@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0EBE8DFC1AADB6FA00148C8B /* Fillio.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EBE8DFB1AADB6FA00148C8B /* Fillio.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0EBE8DFC1AADB6FA00148C8B /* FIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EBE8DFB1AADB6FA00148C8B /* FIO.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0EBE8E021AADB6FA00148C8B /* Fillio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EBE8DF61AADB6FA00148C8B /* Fillio.framework */; };
 		0EBE8E091AADB6FA00148C8B /* FillioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE8E081AADB6FA00148C8B /* FillioTests.swift */; };
+		0EBE8E171AADB7C100148C8B /* FIOAuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE8E161AADB7C100148C8B /* FIOAuthUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,10 +26,11 @@
 /* Begin PBXFileReference section */
 		0EBE8DF61AADB6FA00148C8B /* Fillio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fillio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EBE8DFA1AADB6FA00148C8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0EBE8DFB1AADB6FA00148C8B /* Fillio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fillio.h; sourceTree = "<group>"; };
+		0EBE8DFB1AADB6FA00148C8B /* FIO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FIO.h; sourceTree = "<group>"; };
 		0EBE8E011AADB6FA00148C8B /* FillioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FillioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EBE8E071AADB6FA00148C8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EBE8E081AADB6FA00148C8B /* FillioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillioTests.swift; sourceTree = "<group>"; };
+		0EBE8E161AADB7C100148C8B /* FIOAuthUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIOAuthUser.swift; path = auth/FIOAuthUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +73,11 @@
 		0EBE8DF81AADB6FA00148C8B /* Fillio */ = {
 			isa = PBXGroup;
 			children = (
-				0EBE8DFB1AADB6FA00148C8B /* Fillio.h */,
+				0EBE8E151AADB79500148C8B /* authentification */,
+				0EBE8E141AADB78500148C8B /* network */,
+				0EBE8E131AADB77C00148C8B /* api */,
+				0EBE8E121AADB77000148C8B /* media */,
+				0EBE8DFB1AADB6FA00148C8B /* FIO.h */,
 				0EBE8DF91AADB6FA00148C8B /* Supporting Files */,
 			);
 			path = Fillio;
@@ -102,6 +108,35 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0EBE8E121AADB77000148C8B /* media */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = media;
+			sourceTree = "<group>";
+		};
+		0EBE8E131AADB77C00148C8B /* api */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = api;
+			sourceTree = "<group>";
+		};
+		0EBE8E141AADB78500148C8B /* network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = network;
+			sourceTree = "<group>";
+		};
+		0EBE8E151AADB79500148C8B /* authentification */ = {
+			isa = PBXGroup;
+			children = (
+				0EBE8E161AADB7C100148C8B /* FIOAuthUser.swift */,
+			);
+			name = authentification;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -109,7 +144,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EBE8DFC1AADB6FA00148C8B /* Fillio.h in Headers */,
+				0EBE8DFC1AADB6FA00148C8B /* FIO.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EBE8E171AADB7C100148C8B /* FIOAuthUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +355,7 @@
 		0EBE8E0D1AADB6FA00148C8B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -328,12 +365,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		0EBE8E0E1AADB6FA00148C8B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -395,6 +434,7 @@
 				0EBE8E0E1AADB6FA00148C8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0EBE8E0F1AADB6FA00148C8B /* Build configuration list for PBXNativeTarget "FillioTests" */ = {
 			isa = XCConfigurationList;
@@ -403,6 +443,7 @@
 				0EBE8E111AADB6FA00148C8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
