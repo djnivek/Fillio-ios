@@ -11,6 +11,7 @@
 		0EBE8E021AADB6FA00148C8B /* Fillio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EBE8DF61AADB6FA00148C8B /* Fillio.framework */; };
 		0EBE8E091AADB6FA00148C8B /* FillioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE8E081AADB6FA00148C8B /* FillioTests.swift */; };
 		0EBE8E171AADB7C100148C8B /* FIOAuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE8E161AADB7C100148C8B /* FIOAuthUser.swift */; };
+		0EBE8E191AADB91D00148C8B /* FIONetworkHTTPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE8E181AADB91D00148C8B /* FIONetworkHTTPServer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		0EBE8E071AADB6FA00148C8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EBE8E081AADB6FA00148C8B /* FillioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillioTests.swift; sourceTree = "<group>"; };
 		0EBE8E161AADB7C100148C8B /* FIOAuthUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIOAuthUser.swift; path = auth/FIOAuthUser.swift; sourceTree = "<group>"; };
+		0EBE8E181AADB91D00148C8B /* FIONetworkHTTPServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIONetworkHTTPServer.swift; path = network/FIONetworkHTTPServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		0EBE8E141AADB78500148C8B /* network */ = {
 			isa = PBXGroup;
 			children = (
+				0EBE8E181AADB91D00148C8B /* FIONetworkHTTPServer.swift */,
 			);
 			name = network;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EBE8E191AADB91D00148C8B /* FIONetworkHTTPServer.swift in Sources */,
 				0EBE8E171AADB7C100148C8B /* FIOAuthUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
