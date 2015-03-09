@@ -1,5 +1,5 @@
 //
-//  HttpServer.swift
+//  HTTPClientQueue.swift
 //  Fillio
 //
 //  Created by Kévin MACHADO on 09/03/2015.
@@ -8,6 +8,10 @@
 
 import Foundation
 
-class FIONetworkHTTPServer {
+class FIONetworkHTTPClientQueue {
+    var stack: [HTTPRequest]
     
+    init() {
+        self.stack = []
+    }
 }
