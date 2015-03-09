@@ -8,13 +8,13 @@
 
 import Foundation
 
-class FIOApiObject: Encodable {
+class FIOApiObject: Sendable {
     
     var id: String?
     var createdAt: NSDate?
     
-    override func __encode() -> NSDictionary {
-        let dict: [String : String] = [id!: "_id", createdAt!.description: "_createdAt"]
+    override func __toSendFormat() -> NSDictionary {
+        let dict = [id!: "_id", createdAt!.description: "_createdAt"]
         return dict
     }
 }

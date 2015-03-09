@@ -28,16 +28,17 @@ class FIONetworkHTTPClient {
         return Singleton.instance
     }
     
-    func response() -> (AnyObject) {
+    /*func response() -> (AnyObject) {
         
-    }
+    }*/
     
     func getRequest(url: String, body: String) {
         queue.stack.append(HTTPRequest(url: url, body: body))
     }
     
-    func postRequest(url: String, body: String) {
-        //return nil
+    func postRequest(url: String, body: String, success: (()->()), failure:((NSError)->())) {
+        queue.stack.append(HTTPRequest(url: url, body: body))
+        success()
     }
     
     func downloadImage(url: String) -> UIImage {

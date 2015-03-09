@@ -8,12 +8,30 @@
 
 import Foundation
 
-class FIOAuthUser {
+class FIOAuthUser: FIOApiObject {
     
     var name: String?
-    var id: String?
+    
+    class var sharedInstance: FIOAuthUser {
+        struct Singleton {
+            static let instance = FIOAuthUser()
+        }
+        return Singleton.instance
+    }
     
     func currentUser() {
         
+    }
+    
+    func logIn(username: String, password: String, completion: ((Bool, NSError?) -> ())?) {
+        FIONetworkHTTPClient.sharedInstance.postRequest("/1/user/login", body: "", success: {
+            if let callback = completion {
+                callback(true, nil)
+            }
+            }, failure: { (error: NSError) in
+                if let callback = completion {
+                    callback(false, error)
+                }
+        })
     }
 }

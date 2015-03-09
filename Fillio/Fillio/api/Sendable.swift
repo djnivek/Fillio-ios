@@ -8,9 +8,9 @@
 
 import Foundation
 
-class Encodable {
+class Sendable {
     
-    func __encode() -> NSDictionary {
+    func __toSendFormat() -> NSDictionary {
         fatalError("This method must be overidden")
     }
     
