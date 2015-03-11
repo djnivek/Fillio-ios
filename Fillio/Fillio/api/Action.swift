@@ -15,6 +15,8 @@ class FIOApiAction {
     let module: String
     let library: String?
     
+    var output: NSMutableDictionary
+    
     var isLibrary: Bool {
         if let lib = library {
             return !lib.isEmpty
@@ -27,12 +29,14 @@ class FIOApiAction {
         self.controller = controller
         self.module = module
         self.library = library
+        self.output = NSMutableDictionary()
     }
     
     init(module: String, controller: String, action: String) {
         self.action = action
         self.controller = controller
         self.module = module
+        self.output = NSMutableDictionary()
     }
     
     func run() {

@@ -13,6 +13,12 @@ class FIOApiObject: Sendable {
     var id: String?
     var createdAt: NSDate?
     
+    func save() {
+        var action = FIOApiAction(module: "api", controller: "dataobject", action: "set", library: "fillio")
+        action["test"] = "coucou"
+        action.run()
+    }
+    
     override func __toSendFormat() -> NSDictionary {
         let dict = [id!: "_id", createdAt!.description: "_createdAt"]
         return dict

@@ -10,10 +10,10 @@ import UIKit
 
 struct HTTPRequest {
     var url: String
-    var body: String
-    init(url: String, body: String) {
+    var params: NSDictionary
+    init(url: String, params: NSDictionary) {
         self.url = url
-        self.body = body
+        self.params = params
     }
 }
 
@@ -21,7 +21,7 @@ class FIONetworkHTTPClient {
     
     var queue = FIONetworkHTTPClientQueue()
     
-    class var sharedInstance: FIONetworkHTTPClient {
+    class var sharedClient: FIONetworkHTTPClient {
         struct Singleton {
             static let instance = FIONetworkHTTPClient()
         }
@@ -33,11 +33,11 @@ class FIONetworkHTTPClient {
     }*/
     
     func getRequest(url: String, body: String) {
-        queue.stack.append(HTTPRequest(url: url, body: body))
+        queue.stack.append(HTTPRequest(url: url, params: params))
     }
     
-    func postRequest(url: String, body: String, success: (()->()), failure:((NSError)->())) {
-        queue.stack.append(HTTPRequest(url: url, body: body))
+    func postRequest(url: String, params: NSDictionary, success: (()->()), failure:((NSError)->())) {
+        queue.stack.append(HTTPRequest(url: url, params: params))
         success()
     }
     
