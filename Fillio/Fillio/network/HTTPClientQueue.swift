@@ -9,7 +9,7 @@
 import Foundation
 
 class FIONetworkHTTPClientQueue {
-    var stack: [HTTPRequest]
+    var stack: [(HTTPRequest -> HTTPResponse)]
     
     init() {
         self.stack = []

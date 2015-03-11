@@ -24,7 +24,7 @@ class FIOAuthUser: FIOApiObject {
     }
     
     func logIn(username: String, password: String, completion: ((Bool, NSError?) -> ())?) {
-        FIONetworkHTTPClient.sharedInstance.postRequest("/1/user/login", body: "", success: {
+        /*FIONetworkHTTPClient.sharedInstance.postRequest("/1/user/login", body: "", success: {
             if let callback = completion {
                 callback(true, nil)
             }
@@ -32,6 +32,6 @@ class FIOAuthUser: FIOApiObject {
                 if let callback = completion {
                     callback(false, error)
                 }
-        })
+        })*/
     }
 }

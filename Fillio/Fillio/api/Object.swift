@@ -15,7 +15,7 @@ class FIOApiObject: Sendable {
     
     func save() {
         var action = FIOApiAction(module: "api", controller: "dataobject", action: "set", library: "fillio")
-        action["test"] = "coucou"
+        //action["test"] = "coucou"
         action.run()
     }
     
