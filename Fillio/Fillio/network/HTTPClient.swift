@@ -8,11 +8,11 @@
 
 import UIKit
 
-enum Protocol {
-    case POST(HTTPRequest)
-    case PUT(HTTPRequest)
-    case DELETE(HTTPRequest)
-    case GET(HTTPRequest)
+enum HTTPMethod {
+    case POST
+    case PUT
+    case DELETE
+    case GET
 }
 
 enum HTTPResponseBody {
@@ -43,14 +43,6 @@ enum HTTPResponseBody {
     
 }
 
-struct HTTPRequest {
-    let url: String
-    let params: NSDictionary
-    let method: String
-    let headers: String
-    let body: String?
-}
-
 enum HTTPResponse {
     case OK(HTTPResponseBody)
     case NotFound, Forbidden, Unauthorized
@@ -68,19 +60,15 @@ class FIONetworkHTTPClient {
         return Singleton.instance
     }
     
-    subscript(path: String) -> (HTTPRequest -> ())? {
+    subscript(request: HTTPRequest) -> (() -> ())? {
         get {
             return nil
         }
-        set(val) {
-            if let handler = val {
-                queue.stack.append(handler)
+        set {
+            if let completionHandler = newValue {
+                queue.append(request, withCompletion: completionHandler)
             }
         }
-    }
-    
-    func response(response: HTTPResponse) {
-        
     }
 
     func getRequest(url: String, body: String) {
@@ -122,31 +110,23 @@ class Test {
         }
         set (val) {
             if let callback = val {
-                var vdsfd = .SUCCESS(callback.1)
-                handlers[path] = vdsfd
+                //var vdsfd = .SUCCESS(callback.1)
+                //handlers[path] = vdsfd
             }
         }
     }
     
     func handleIt() {
         for handler in handlers {
-            let (success, error) = handler.1
+            /*let (success, error) = handler.1
             switch success {
             case Function.SUCCESS(let function) :
                 function("youpi")
             case Function.FAIL(let function) :
                 function("oups")
-            }
+            }*/
             //callback(handler.0)
             handlers.removeValueForKey(handler.0)
         }
     }
-}
-
-var test = Test()
-
-test["/user/1"] = {
-    
-    println(">>> on success '\($0)'")
-    
 }

@@ -40,10 +40,10 @@ class FIOApiAction {
     }
     
     func run() {
-        FIONetworkHTTPClient.sharedClient
-        /*FIONetworkHTTPClient.sharedInstance.postRequest("/fio-a/\(module)/\(controller)/\(action)", body: "", success: {
-            
-            }) { (error: NSError) in
+        /*let request = HTTPRequest(method: .GET)
+        request.url = "user/dev/center"
+        request.method
+        FIONetworkHTTPClient.sharedClient[request] = {
             
         }*/
     }

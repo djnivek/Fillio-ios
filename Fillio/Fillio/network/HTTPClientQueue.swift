@@ -7,11 +7,20 @@
 //
 
 import Foundation
+import MKMiniLib
 
-class FIONetworkHTTPClientQueue {
-    var stack: [(HTTPRequest -> HTTPResponse)]
+struct FIONetworkHTTPClientQueue {
     
-    init() {
-        self.stack = []
+    typealias CompletionHandler = () -> ()
+    
+    typealias Request = (HTTPRequest, CompletionHandler)
+    private var queue = MKQueue<Request>()
+    
+    private var next: Request? {
+        return queue.peek()
+    }
+    
+    mutating func append(request: HTTPRequest, withCompletion completion: CompletionHandler) {
+        queue.add((request, completion))
     }
 }

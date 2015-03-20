@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Kévin MACHADO. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 //! Project version number for Fillio.
 FOUNDATION_EXPORT double FillioVersionNumber;
 
