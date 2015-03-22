@@ -8,6 +8,7 @@
 
 import UIKit
 import XCTest
+import Fillio
 
 class FillioTests: XCTestCase {
     
@@ -30,6 +31,25 @@ class FillioTests: XCTestCase {
         // This is an example of a performance test case.
         self.measureBlock() {
             // Put the code you want to measure the time of here.
+        }
+    }
+    
+    func testGetData() {
+        var client = FIONetworkHTTPClient.sharedClient
+        client["http://www.google.fr"]("GET", "") {
+            println("Method -> \($0)")
+            println("Param ->\($1)")
+            println("With url -> \($2)")
+        }
+    }
+    
+    func testCallApi() {
+        var apiClient = FIONetworkHTTPClient(url: NSURL(string: "http://localhost:8888/"))
+        apiClient.progressHandler
+        apiClient["user/1"]("POST", "token=2hdg2gJDek86jHudsgHGDS") {
+            println("Method -> \($0)")
+            println("Param ->\($1)")
+            println("With url -> \($2)")
         }
     }
     

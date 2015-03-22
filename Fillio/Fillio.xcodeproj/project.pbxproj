@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E1716D11ABC73D800AF0E40 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1716D01ABC73D800AF0E40 /* HTTPMethod.swift */; };
+		0E1716D31ABC73F500AF0E40 /* HTTPReponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1716D21ABC73F500AF0E40 /* HTTPReponseBody.swift */; };
 		0E7D68081AAE11B800BDB176 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D68071AAE11B800BDB176 /* User.swift */; };
 		0E7D680B1AAE11C800BDB176 /* Sendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D68091AAE11C800BDB176 /* Sendable.swift */; };
 		0E7D680C1AAE11C800BDB176 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D680A1AAE11C800BDB176 /* Object.swift */; };
@@ -31,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E1716D01ABC73D800AF0E40 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPMethod.swift; path = network/HTTPMethod.swift; sourceTree = "<group>"; };
+		0E1716D21ABC73F500AF0E40 /* HTTPReponseBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPReponseBody.swift; path = network/HTTPReponseBody.swift; sourceTree = "<group>"; };
 		0E7D68071AAE11B800BDB176 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = auth/User.swift; sourceTree = "<group>"; };
 		0E7D68091AAE11C800BDB176 /* Sendable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sendable.swift; path = api/Sendable.swift; sourceTree = "<group>"; };
 		0E7D680A1AAE11C800BDB176 /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Object.swift; path = api/Object.swift; sourceTree = "<group>"; };
@@ -147,6 +151,8 @@
 				0E7D680D1AAE124300BDB176 /* HTTPClient.swift */,
 				0E7D680E1AAE124300BDB176 /* HTTPClientQueue.swift */,
 				0E973EB01ABA28F40021EF03 /* HTTPRequest.swift */,
+				0E1716D01ABC73D800AF0E40 /* HTTPMethod.swift */,
+				0E1716D21ABC73F500AF0E40 /* HTTPReponseBody.swift */,
 			);
 			name = network;
 			sourceTree = "<group>";
@@ -270,6 +276,8 @@
 				0E7D68151AAE404900BDB176 /* Action.swift in Sources */,
 				0E7D680C1AAE11C800BDB176 /* Object.swift in Sources */,
 				0E7D680F1AAE124300BDB176 /* HTTPClient.swift in Sources */,
+				0E1716D31ABC73F500AF0E40 /* HTTPReponseBody.swift in Sources */,
+				0E1716D11ABC73D800AF0E40 /* HTTPMethod.swift in Sources */,
 				0E973EB11ABA28F40021EF03 /* HTTPRequest.swift in Sources */,
 				0E7D68101AAE124300BDB176 /* HTTPClientQueue.swift in Sources */,
 				0E7D680B1AAE11C800BDB176 /* Sendable.swift in Sources */,
