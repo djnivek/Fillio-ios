@@ -25,21 +25,21 @@ public class FIONetworkHTTPClient {
     // url racine du client
     var rootURL: NSURL?
     
-    public init() {}
+    init() {}
     
-    public convenience init(url: NSURL?) {
+    convenience init(url: NSURL?) {
         self.init()
         if let theUrl = url {
             self.rootURL = theUrl
         }
     }
     
-    public class var sharedClient: FIONetworkHTTPClient {
+    /*public class var sharedClient: FIONetworkHTTPClient {
         struct Singleton {
             static let instance = FIONetworkHTTPClient()
         }
         return Singleton.instance
-    }
+    }*/
     
     public typealias completionWithTuples = ((String, String, String)->())
     public typealias functionSetting = (String, String, completionWithTuples) -> ()

@@ -35,7 +35,7 @@ class FillioTests: XCTestCase {
     }
     
     func testGetData() {
-        var client = FIONetworkHTTPClient.sharedClient
+        var client = FIONetwork.defaultClient
         client["http://www.google.fr"]("GET", "") {
             println("Method -> \($0)")
             println("Param ->\($1)")
@@ -44,8 +44,10 @@ class FillioTests: XCTestCase {
     }
     
     func testCallApi() {
-        var apiClient = FIONetworkHTTPClient(url: NSURL(string: "http://localhost:8888/"))
-        apiClient.progressHandler
+        var apiClient = FIONetwork.clientWithRootUrl("http://localhost:8888/")
+        apiClient.progressHandler {
+            
+        }
         apiClient["user/1"]("POST", "token=2hdg2gJDek86jHudsgHGDS") {
             println("Method -> \($0)")
             println("Param ->\($1)")

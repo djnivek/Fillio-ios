@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E072F591AC0186D005653B1 /* MKQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E072F581AC0186D005653B1 /* MKQueue.swift */; };
+		0E072F5B1AC083C5005653B1 /* FIONetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E072F5A1AC083C5005653B1 /* FIONetwork.swift */; };
 		0E1716D11ABC73D800AF0E40 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1716D01ABC73D800AF0E40 /* HTTPMethod.swift */; };
 		0E1716D31ABC73F500AF0E40 /* HTTPReponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1716D21ABC73F500AF0E40 /* HTTPReponseBody.swift */; };
 		0E7D68081AAE11B800BDB176 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D68071AAE11B800BDB176 /* User.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		0E072F581AC0186D005653B1 /* MKQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MKQueue.swift; path = network/MKQueue.swift; sourceTree = "<group>"; };
+		0E072F5A1AC083C5005653B1 /* FIONetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIONetwork.swift; path = network/FIONetwork.swift; sourceTree = "<group>"; };
 		0E1716D01ABC73D800AF0E40 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPMethod.swift; path = network/HTTPMethod.swift; sourceTree = "<group>"; };
 		0E1716D21ABC73F500AF0E40 /* HTTPReponseBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPReponseBody.swift; path = network/HTTPReponseBody.swift; sourceTree = "<group>"; };
 		0E7D68071AAE11B800BDB176 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = auth/User.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		0EBE8E141AADB78500148C8B /* network */ = {
 			isa = PBXGroup;
 			children = (
+				0E072F5A1AC083C5005653B1 /* FIONetwork.swift */,
 				0E072F581AC0186D005653B1 /* MKQueue.swift */,
 				0E7D680D1AAE124300BDB176 /* HTTPClient.swift */,
 				0E7D680E1AAE124300BDB176 /* HTTPClientQueue.swift */,
@@ -278,6 +281,7 @@
 				0E1716D31ABC73F500AF0E40 /* HTTPReponseBody.swift in Sources */,
 				0E1716D11ABC73D800AF0E40 /* HTTPMethod.swift in Sources */,
 				0E973EB11ABA28F40021EF03 /* HTTPRequest.swift in Sources */,
+				0E072F5B1AC083C5005653B1 /* FIONetwork.swift in Sources */,
 				0E072F591AC0186D005653B1 /* MKQueue.swift in Sources */,
 				0E7D68101AAE124300BDB176 /* HTTPClientQueue.swift in Sources */,
 				0E7D680B1AAE11C800BDB176 /* Sendable.swift in Sources */,
