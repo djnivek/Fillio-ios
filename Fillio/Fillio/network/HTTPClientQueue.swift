@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import MKMiniLib
 
 struct FIONetworkHTTPClientQueue {
     
