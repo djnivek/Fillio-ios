@@ -14,18 +14,31 @@ enum HTTPResponse {
     case InternalServerError
 }
 
-public class FIONetworkHTTPClient {
+public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate {
     
-    // session pour le client
-    var sessions = [NSURLSession]()
+    /// session pour le client
+    var session = NSURLSession()
     
-    // file d'attente (?)
+    /// configuration destinée à la session
+    public var config: FIONetworkClientConfiguration = FIONetworkClientConfiguration() {
+        didSet(newConfig) {
+            session = NSURLSession(configuration: newConfig.sessionConfig)
+            println("Session changed with new configuration")
+        }
+    }
+    
+    /// client's tasks
+    var taskManager = FIONetworkTaskManager()
+    
+    /// file d'attente (?)
     var queue = FIONetworkHTTPClientQueue()
     
-    // url racine du client
+    /// url racine du client
     var rootURL: NSURL?
     
-    init() {}
+    init() {
+        config.delegate = self
+    }
     
     convenience init(url: NSURL?) {
         self.init()
@@ -34,12 +47,10 @@ public class FIONetworkHTTPClient {
         }
     }
     
-    /*public class var sharedClient: FIONetworkHTTPClient {
-        struct Singleton {
-            static let instance = FIONetworkHTTPClient()
-        }
-        return Singleton.instance
-    }*/
+    func didChangedSessionConfig(config: FIONetworkClientConfiguration) {
+        println("Session changed with new configuration")
+        session = NSURLSession(configuration: config.sessionConfig)
+    }
     
     public typealias completionWithTuples = ((String, String, String)->())
     public typealias functionSetting = (String, String, completionWithTuples) -> ()
@@ -48,12 +59,17 @@ public class FIONetworkHTTPClient {
         get {
             var res: functionSetting = { (method: String, param: String, completion: completionWithTuples) in
                 completion(method, param, url)
+                self.queueTaskWithinSession(method: method, param: param, url: url)
             }
             return res
         }
     }
     
     public func progressHandler(handler: (()->())) {
+        
+    }
+    
+    private func queueTaskWithinSession(#method: String, param: String, url: String) {
         
     }
     

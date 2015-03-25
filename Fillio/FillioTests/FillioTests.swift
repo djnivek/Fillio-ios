@@ -55,4 +55,10 @@ class FillioTests: XCTestCase {
         }
     }
     
+    func testSetConfigHTTPClient() {
+        var apiClient = FIONetwork.defaultClient
+        apiClient.config.sessionType = FIONetworkHTTPSessionType.EphemeralSession
+        apiClient.config.allowCellularAccess = false
+    }
+    
 }
