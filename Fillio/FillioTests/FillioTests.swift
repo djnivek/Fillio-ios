@@ -36,10 +36,9 @@ class FillioTests: XCTestCase {
     
     func testGetData() {
         var client = FIONetwork.defaultClient
-        client["http://www.google.fr"]("GET", "") {
-            println("Method -> \($0)")
-            println("Param ->\($1)")
-            println("With url -> \($2)")
+        client["http://www.google.fr"]("") {
+            println("Param ->\($0)")
+            println("With url -> \($1)")
         }
     }
     
@@ -48,10 +47,19 @@ class FillioTests: XCTestCase {
         apiClient.progressHandler {
             
         }
-        apiClient["user/1"]("POST", "token=2hdg2gJDek86jHudsgHGDS") {
-            println("Method -> \($0)")
-            println("Param ->\($1)")
-            println("With url -> \($2)")
+        apiClient["user/1"]("token=2hdg2gJDek86jHudsgHGDS") {
+            println("Param ->\($0)")
+            println("With url -> \($1)")
+        }
+    }
+    
+    func testNSURL() {
+        var session = NSURLSession.sharedSession()
+        var url = NSURL(string: "http://www.google.fr")
+        if let myUrl = url {
+            var request = NSURLRequest(URL: myUrl)
+            var dataTask: NSURLSessionDataTask?
+            dataTask = session.dataTaskWithRequest(request)
         }
     }
     
@@ -60,5 +68,4 @@ class FillioTests: XCTestCase {
         apiClient.config.sessionType = FIONetworkHTTPSessionType.EphemeralSession
         apiClient.config.allowCellularAccess = false
     }
-    
 }

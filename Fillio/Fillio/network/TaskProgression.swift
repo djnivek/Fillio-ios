@@ -14,6 +14,6 @@ class FIONetworkTaskProgression {
         return 0
     }
     
-    var
+    //var
     
 }

@@ -16,24 +16,20 @@ enum HTTPResponse {
 
 public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate {
     
-    /// session pour le client
-    var session = NSURLSession()
-    
     /// configuration destinée à la session
     public var config: FIONetworkClientConfiguration = FIONetworkClientConfiguration() {
         didSet(newConfig) {
-            session = NSURLSession(configuration: newConfig.sessionConfig)
-            println("Session changed with new configuration")
+            resetSessionWithConfig(newConfig)
         }
     }
     
-    /// client's tasks
+    /// The manager of client tasks. Underlying the session and task.
     var taskManager = FIONetworkTaskManager()
     
     /// file d'attente (?)
-    var queue = FIONetworkHTTPClientQueue()
+    //var queue = FIONetworkHTTPClientQueue()
     
-    /// url racine du client
+    /// The root url for the client
     var rootURL: NSURL?
     
     init() {
@@ -47,30 +43,39 @@ public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate {
         }
     }
     
-    func didChangedSessionConfig(config: FIONetworkClientConfiguration) {
-        println("Session changed with new configuration")
-        session = NSURLSession(configuration: config.sessionConfig)
-    }
-    
-    public typealias completionWithTuples = ((String, String, String)->())
-    public typealias functionSetting = (String, String, completionWithTuples) -> ()
+    public typealias completionWithTuples = ((String, String)-> Void)
+    public typealias functionSetting = (String, completionWithTuples) -> Void
     
     public subscript (url: String) -> functionSetting {
         get {
-            var res: functionSetting = { (method: String, param: String, completion: completionWithTuples) in
-                completion(method, param, url)
-                self.queueTaskWithinSession(method: method, param: param, url: url)
+            var res: functionSetting = { (param: String, completion: completionWithTuples) in
+                completion(param, url)
+                self.queueTaskWithinSession(param, url: url)
             }
             return res
         }
     }
     
+    // MARK: - Session
+    
+    private func resetSessionWithConfig(config: FIONetworkClientConfiguration) {
+        println("Session changed with new configuration")
+        taskManager.session = NSURLSession(configuration: config.sessionConfig, delegate: taskManager, delegateQueue: nil)
+    }
+    
+    func didChangedSessionConfig(config: FIONetworkClientConfiguration) {
+        resetSessionWithConfig(config)
+    }
+    
+    // MARK: -
+    
     public func progressHandler(handler: (()->())) {
         
     }
     
-    private func queueTaskWithinSession(#method: String, param: String, url: String) {
-        
+    private func queueTaskWithinSession(param: String, url: String) {
+        var task = FIONetworkTask(param: param, url: url)
+        taskManager.addTaskToQueue(task)
     }
     
     public func downloadImage(url: String) -> UIImage {
