@@ -14,7 +14,7 @@ enum HTTPResponse {
     case InternalServerError
 }
 
-public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate {
+public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate, FIONetworkTaskManagerDelegate {
     
     /// configuration destinée à la session
     public var config: FIONetworkClientConfiguration = FIONetworkClientConfiguration() {
@@ -34,6 +34,7 @@ public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate {
     
     init() {
         config.delegate = self
+        taskManager.delegate = self
     }
     
     convenience init(url: NSURL?) {
@@ -43,20 +44,32 @@ public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate {
         }
     }
     
-    public typealias completionWithTuples = ((String, String)-> Void)
-    public typealias functionSetting = (String, completionWithTuples) -> Void
+    public typealias completionWithTuples = ((String, String)-> Void)?
+    public typealias functionSetting = (String, completionWithTuples) -> FIONetworkTask
     
     public subscript (url: String) -> functionSetting {
         get {
             var res: functionSetting = { (param: String, completion: completionWithTuples) in
-                completion(param, url)
-                self.queueTaskWithinSession(param, url: url)
+                
+                // create task with elements
+                var task = FIONetworkTask(param: param, url: url)
+                
+                if let block = completion {
+                    task.completionBlock = block
+                }
+                
+                // insert task into the taskManager
+                self.queueTask(task)
+                
+                return task
             }
             return res
         }
     }
     
     // MARK: - Session
+    
+    // MARK: Config
     
     private func resetSessionWithConfig(config: FIONetworkClientConfiguration) {
         println("Session changed with new configuration")
@@ -67,14 +80,25 @@ public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate {
         resetSessionWithConfig(config)
     }
     
-    // MARK: -
+    // MARK: Delegate
     
-    public func progressHandler(handler: (()->())) {
+    func didReceiveResponse(response: NSURLResponse?, withinSession session: NSURLSession, forTask task: FIONetworkTask) {
+        if let completion = task.completionBlock {
+            completion("test", "ok")
+        }
+    }
+    
+    func didUploadProgress(withinSession session: NSURLSession, forTask task: NSURLSessionTask, withProgress progress: NSProgress) {
         
     }
     
-    private func queueTaskWithinSession(param: String, url: String) {
-        var task = FIONetworkTask(param: param, url: url)
+    func downloadProgress(withinSession session: NSURLSession, forTask task: NSURLSessionTask, withProgress progress: NSProgress) {
+        
+    }
+    
+    // MARK: -
+    
+    private func queueTask(task: FIONetworkTask) {
         taskManager.addTaskToQueue(task)
     }
     

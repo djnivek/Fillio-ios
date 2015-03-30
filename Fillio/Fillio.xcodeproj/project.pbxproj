@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E072F591AC0186D005653B1 /* MKQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E072F581AC0186D005653B1 /* MKQueue.swift */; };
 		0E072F5B1AC083C5005653B1 /* FIONetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E072F5A1AC083C5005653B1 /* FIONetwork.swift */; };
 		0E1716D11ABC73D800AF0E40 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1716D01ABC73D800AF0E40 /* HTTPMethod.swift */; };
 		0E1716D31ABC73F500AF0E40 /* HTTPReponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1716D21ABC73F500AF0E40 /* HTTPReponseBody.swift */; };
+		0E65812F1AC977E5000C5FD3 /* FillioTestCallMethodClientTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E65812E1AC977E5000C5FD3 /* FillioTestCallMethodClientTask.swift */; };
+		0E6581311AC97815000C5FD3 /* FillioTestSettingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6581301AC97815000C5FD3 /* FillioTestSettingClient.swift */; };
 		0E679A7E1AC2EB99007A1E77 /* TaskProgression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E679A7D1AC2EB99007A1E77 /* TaskProgression.swift */; };
 		0E679A801AC2EBE8007A1E77 /* HTTPClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E679A7F1AC2EBE8007A1E77 /* HTTPClientConfiguration.swift */; };
 		0E679A821AC339CC007A1E77 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E679A811AC339CC007A1E77 /* HTTPTask.swift */; };
@@ -18,7 +19,6 @@
 		0E7D680B1AAE11C800BDB176 /* Sendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D68091AAE11C800BDB176 /* Sendable.swift */; };
 		0E7D680C1AAE11C800BDB176 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D680A1AAE11C800BDB176 /* Object.swift */; };
 		0E7D680F1AAE124300BDB176 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D680D1AAE124300BDB176 /* HTTPClient.swift */; };
-		0E7D68101AAE124300BDB176 /* HTTPClientQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D680E1AAE124300BDB176 /* HTTPClientQueue.swift */; };
 		0E7D68151AAE404900BDB176 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D68141AAE404900BDB176 /* Action.swift */; };
 		0E973EB11ABA28F40021EF03 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E973EB01ABA28F40021EF03 /* HTTPRequest.swift */; };
 		0EAED9281AC2958B0090ECB7 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAED9271AC2958B0090ECB7 /* TaskManager.swift */; };
@@ -38,10 +38,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0E072F581AC0186D005653B1 /* MKQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MKQueue.swift; path = network/MKQueue.swift; sourceTree = "<group>"; };
 		0E072F5A1AC083C5005653B1 /* FIONetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIONetwork.swift; path = network/FIONetwork.swift; sourceTree = "<group>"; };
 		0E1716D01ABC73D800AF0E40 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPMethod.swift; path = network/HTTPMethod.swift; sourceTree = "<group>"; };
 		0E1716D21ABC73F500AF0E40 /* HTTPReponseBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPReponseBody.swift; path = network/HTTPReponseBody.swift; sourceTree = "<group>"; };
+		0E65812E1AC977E5000C5FD3 /* FillioTestCallMethodClientTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillioTestCallMethodClientTask.swift; sourceTree = "<group>"; };
+		0E6581301AC97815000C5FD3 /* FillioTestSettingClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillioTestSettingClient.swift; sourceTree = "<group>"; };
 		0E679A7D1AC2EB99007A1E77 /* TaskProgression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskProgression.swift; path = network/TaskProgression.swift; sourceTree = "<group>"; };
 		0E679A7F1AC2EBE8007A1E77 /* HTTPClientConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPClientConfiguration.swift; path = network/HTTPClientConfiguration.swift; sourceTree = "<group>"; };
 		0E679A811AC339CC007A1E77 /* HTTPTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPTask.swift; path = network/HTTPTask.swift; sourceTree = "<group>"; };
@@ -49,7 +50,6 @@
 		0E7D68091AAE11C800BDB176 /* Sendable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sendable.swift; path = api/Sendable.swift; sourceTree = "<group>"; };
 		0E7D680A1AAE11C800BDB176 /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Object.swift; path = api/Object.swift; sourceTree = "<group>"; };
 		0E7D680D1AAE124300BDB176 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPClient.swift; path = network/HTTPClient.swift; sourceTree = "<group>"; };
-		0E7D680E1AAE124300BDB176 /* HTTPClientQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPClientQueue.swift; path = network/HTTPClientQueue.swift; sourceTree = "<group>"; };
 		0E7D68141AAE404900BDB176 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Action.swift; path = api/Action.swift; sourceTree = "<group>"; };
 		0E973EB01ABA28F40021EF03 /* HTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPRequest.swift; path = network/HTTPRequest.swift; sourceTree = "<group>"; };
 		0EAED9271AC2958B0090ECB7 /* TaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskManager.swift; path = network/TaskManager.swift; sourceTree = "<group>"; };
@@ -123,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				0EBE8E081AADB6FA00148C8B /* FillioTests.swift */,
+				0E65812E1AC977E5000C5FD3 /* FillioTestCallMethodClientTask.swift */,
+				0E6581301AC97815000C5FD3 /* FillioTestSettingClient.swift */,
 				0EBE8E061AADB6FA00148C8B /* Supporting Files */,
 			);
 			path = FillioTests;
@@ -159,9 +161,7 @@
 				0E679A7F1AC2EBE8007A1E77 /* HTTPClientConfiguration.swift */,
 				0E679A7D1AC2EB99007A1E77 /* TaskProgression.swift */,
 				0E072F5A1AC083C5005653B1 /* FIONetwork.swift */,
-				0E072F581AC0186D005653B1 /* MKQueue.swift */,
 				0E7D680D1AAE124300BDB176 /* HTTPClient.swift */,
-				0E7D680E1AAE124300BDB176 /* HTTPClientQueue.swift */,
 				0E973EB01ABA28F40021EF03 /* HTTPRequest.swift */,
 				0E1716D01ABC73D800AF0E40 /* HTTPMethod.swift */,
 				0E1716D21ABC73F500AF0E40 /* HTTPReponseBody.swift */,
@@ -297,9 +297,7 @@
 				0E1716D11ABC73D800AF0E40 /* HTTPMethod.swift in Sources */,
 				0E973EB11ABA28F40021EF03 /* HTTPRequest.swift in Sources */,
 				0E072F5B1AC083C5005653B1 /* FIONetwork.swift in Sources */,
-				0E072F591AC0186D005653B1 /* MKQueue.swift in Sources */,
 				0E679A7E1AC2EB99007A1E77 /* TaskProgression.swift in Sources */,
-				0E7D68101AAE124300BDB176 /* HTTPClientQueue.swift in Sources */,
 				0E7D680B1AAE11C800BDB176 /* Sendable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +307,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EBE8E091AADB6FA00148C8B /* FillioTests.swift in Sources */,
+				0E6581311AC97815000C5FD3 /* FillioTestSettingClient.swift in Sources */,
+				0E65812F1AC977E5000C5FD3 /* FillioTestCallMethodClientTask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
