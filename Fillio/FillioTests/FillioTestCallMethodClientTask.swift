@@ -62,15 +62,6 @@ class FillioTestCallMethodClientTask: XCTestCase {
         waitForExpectationsWithTimeout(5.0, handler: nil)
     }
     
-    func testCallApi() {
-        var apiClient = FIONetwork.clientWithRootUrl("http://localhost:8888/")
-        
-        apiClient["user/1"]("token=2hdg2gJDek86jHudsgHGDS") {
-            println("Param ->\($0)")
-            println("With url -> \($1)")
-        }
-    }
-    
     func testTaskAutoStart() {
         var client = FIONetwork.defaultClient
         client.config.autostartTask = true

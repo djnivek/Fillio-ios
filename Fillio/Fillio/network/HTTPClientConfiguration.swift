@@ -25,7 +25,7 @@ public class FIONetworkClientConfiguration {
     /// The delegate
     var delegate: FIONetworkClientConfigurationDelegate?
     
-    /// A boolean value that determines whether the connection should be executed with cellular network or only wifi
+    /// A boolean value that determines whether the connection should be executed with cellular network or only wifi (The default value is true)
     public var allowCellularAccess: Bool = true {
         didSet {
             if let d = delegate {
@@ -37,7 +37,7 @@ public class FIONetworkClientConfiguration {
     /// A boolean value that determines whether the task should start automatically (The default value is false)
     public var autostartTask = false
     
-    /// The type of the session
+    /// The type of the session (The default value is DefaultSession)
     public var sessionType: FIONetworkHTTPSessionType = FIONetworkHTTPSessionType.DefaultSession {
         didSet {
             if let d = delegate {

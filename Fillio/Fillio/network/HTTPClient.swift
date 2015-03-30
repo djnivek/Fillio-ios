@@ -38,7 +38,7 @@ public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate, FIONet
         }
     }
     
-    public typealias completionWithTuples = ((String, String)-> Void)?
+    public typealias completionWithTuples = ((NSURLResponse?, NSData?)-> Void)?
     public typealias functionSetting = (String, completionWithTuples) -> FIONetworkTask
     
     public subscript (url: String) -> functionSetting {
@@ -76,19 +76,19 @@ public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate, FIONet
     
     // MARK: Delegate
     
-    func didReceiveResponse(response: NSURLResponse?, withinSession session: NSURLSession, forTask task: FIONetworkTask) {
+    func Task(task: FIONetworkTask, didReceiveResponse response: NSURLResponse?, data: NSData?, withinSession session: NSURLSession) {
         if let completion = task.completionBlock {
-            completion("test", "ok")
+            completion(response, data)
         }
     }
     
-    func didUploadProgress(withinSession session: NSURLSession, forTask task: NSURLSessionTask, withProgress progress: NSProgress) {
+    /*func didUploadProgress(withinSession session: NSURLSession, forTask task: NSURLSessionTask, withProgress progress: NSProgress) {
         
     }
     
     func downloadProgress(withinSession session: NSURLSession, forTask task: NSURLSessionTask, withProgress progress: NSProgress) {
         
-    }
+    }*/
     
     // MARK: -
     

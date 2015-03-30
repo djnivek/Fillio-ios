@@ -20,7 +20,7 @@ public class FIONetworkTask {
     var sessionTask: NSURLSessionTask?
     
     /// The optional completionBlock called at the end
-    var completionBlock: ((String, String) -> ())?
+    var completionBlock: ((NSURLResponse?, NSData?) -> ())?
     
     private var secondTestCompletionBlock: (() -> Void)?
     
@@ -46,7 +46,7 @@ public class FIONetworkTask {
         self.secondTestCompletionBlock = block
     }
     
-    public func didComplete(block: (String, String)->()) {
+    public func didComplete(block: (NSURLResponse?, NSData?)->()) {
         self.completionBlock = block
     }
     

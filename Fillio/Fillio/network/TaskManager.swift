@@ -9,9 +9,9 @@
 import Foundation
 
 protocol FIONetworkTaskManagerDelegate {
-    func didReceiveResponse(response: NSURLResponse?, withinSession session: NSURLSession, forTask task: FIONetworkTask)
-    func didUploadProgress(withinSession session: NSURLSession, forTask task: NSURLSessionTask, withProgress progress: NSProgress)
-    func downloadProgress(withinSession session: NSURLSession, forTask task: NSURLSessionTask, withProgress progress: NSProgress)
+    func Task(task: FIONetworkTask, didReceiveResponse response: NSURLResponse?, data: NSData?, withinSession session: NSURLSession)
+    /*func didUploadProgress(withinSession session: NSURLSession, forTask task: NSURLSessionTask, withProgress progress: NSProgress)
+    func downloadProgress(withinSession session: NSURLSession, forTask task: NSURLSessionTask, withProgress progress: NSProgress)*/
 }
 
 class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloadDelegate, NSURLSessionTaskDelegate {
@@ -40,7 +40,7 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
             let theTask: NSURLSessionTask = session.dataTaskWithRequest(request, completionHandler: {
                 (data, response, error) in
                 if let myDelegate = self.delegate {
-                    myDelegate.didReceiveResponse(response, withinSession: self.session, forTask: task)
+                    myDelegate.Task(task, didReceiveResponse: response, data: data, withinSession: self.session)
                 }
             })
             
