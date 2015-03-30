@@ -73,7 +73,7 @@ class FillioTestCallMethodClientTask: XCTestCase {
     
     func testTaskAutoStart() {
         var client = FIONetwork.defaultClient
-        client.config.taskAutoStart = true
+        client.config.autostartTask = true
         var expectation = self.expectationWithDescription("Google Request")
         var task = client["http://www.google.fr"]("") {
             expectation.fulfill()

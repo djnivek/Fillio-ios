@@ -28,13 +28,14 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
     /// The client provided to the taskManager
     unowned let ownClient: FIONetworkHTTPClient
     
-    init(client: FIONetworkHTTPClient) {
+    init(client: FIONetworkHTTPClient, delegate: FIONetworkTaskManagerDelegate) {
         self.ownClient = client
+        self.delegate = delegate
     }
     
     func addTaskToQueue(task: FIONetworkTask) {
         
-        ///
+        // Add task to session
         if let request = task.request {
             let theTask: NSURLSessionTask = session.dataTaskWithRequest(request, completionHandler: {
                 (data, response, error) in
@@ -43,13 +44,16 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
                 }
             })
             
-            /// add sessionTask to the task
+            // add sessionTask to the task
             task.sessionTask = theTask
             
-            /// insert task to stack
+            // insert task to stack
             tasks.append(task)
             
-            //theTask.resume()
+            // start the task if required by the client
+            if ownClient.config.autostartTask {
+                theTask.resume()
+            }
         }
     }
     

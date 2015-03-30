@@ -8,12 +8,6 @@
 
 import UIKit
 
-enum HTTPResponse {
-    case OK(HTTPResponseBody)
-    case NotFound, Forbidden, Unauthorized
-    case InternalServerError
-}
-
 public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate, FIONetworkTaskManagerDelegate {
     
     /// configuration destinée à la session
@@ -24,7 +18,7 @@ public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate, FIONet
     }
     
     /// The manager of client tasks. Underlying the session and task.
-    var taskManager = FIONetworkTaskManager()
+    lazy var taskManager: FIONetworkTaskManager = FIONetworkTaskManager(client: self, delegate: self)
     
     /// file d'attente (?)
     //var queue = FIONetworkHTTPClientQueue()
@@ -33,8 +27,8 @@ public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate, FIONet
     var rootURL: NSURL?
     
     init() {
+        //self.taskManager = FIONetworkTaskManager(client: self, delegate: self)
         config.delegate = self
-        taskManager.delegate = self
     }
     
     convenience init(url: NSURL?) {
