@@ -38,15 +38,13 @@ class FillioTestCallMethodClientTask: XCTestCase {
         var client = FIONetwork.defaultClient
         var expectation = self.expectationWithDescription("Request session")
         var task = client["http://www.google.fr"]("", nil)
-        
-        task.didComplete {
+        task.blocks.Complete {
             expectation.fulfill()
-            println("Param ->\($0)")
-            println("With url -> \($1)")
+            println("Response ->\($0)")
+            println("Data -> \($1)")
+            println("Error -> \($2)")
         }
-        
         task.resume()
-        
         waitForExpectationsWithTimeout(5.0, handler: nil)
     }
     
@@ -55,8 +53,9 @@ class FillioTestCallMethodClientTask: XCTestCase {
         var expectation = self.expectationWithDescription("Google Request")
         var task = client["http://www.google.fr"]("") {
             expectation.fulfill()
-            println("Param ->\($0)")
-            println("With url -> \($1)")
+            println("Response ->\($0)")
+            println("Data -> \($1)")
+            println("Error -> \($2)")
         }
         task.resume()
         waitForExpectationsWithTimeout(5.0, handler: nil)
@@ -68,8 +67,9 @@ class FillioTestCallMethodClientTask: XCTestCase {
         var expectation = self.expectationWithDescription("Google Request")
         var task = client["http://www.google.fr"]("") {
             expectation.fulfill()
-            println("Param ->\($0)")
-            println("With url -> \($1)")
+            println("Response ->\($0)")
+            println("Data -> \($1)")
+            println("Error -> \($2)")
         }
         waitForExpectationsWithTimeout(5.0, handler: nil)
     }

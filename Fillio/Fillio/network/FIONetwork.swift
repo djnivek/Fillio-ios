@@ -31,7 +31,9 @@ public class FIONetwork {
         if let client = FIONetwork.instance.clients[rootUrl] {
             return client
         } else {
-            FIONetwork.instance.clients[rootUrl] = FIONetworkHTTPClient(url: NSURL(string: rootUrl))
+            if let url = NSURL(string: rootUrl) {
+                FIONetwork.instance.clients[rootUrl] = FIONetworkHTTPClient(url: url)
+            }
         }
         return FIONetworkHTTPClient()
     }

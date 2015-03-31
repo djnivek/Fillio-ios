@@ -10,6 +10,7 @@ import Foundation
 
 protocol FIONetworkTaskManagerDelegate {
     func Task(task: FIONetworkTask, didReceiveResponse response: NSURLResponse?, data: NSData?, withinSession session: NSURLSession)
+    func Task(task: FIONetworkTask, didFailedWithError error: NSError, withinSession session: NSURLSession)
     /*func didUploadProgress(withinSession session: NSURLSession, forTask task: NSURLSessionTask, withProgress progress: NSProgress)
     func downloadProgress(withinSession session: NSURLSession, forTask task: NSURLSessionTask, withProgress progress: NSProgress)*/
 }
@@ -40,7 +41,14 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
             let theTask: NSURLSessionTask = session.dataTaskWithRequest(request, completionHandler: {
                 (data, response, error) in
                 if let myDelegate = self.delegate {
-                    myDelegate.Task(task, didReceiveResponse: response, data: data, withinSession: self.session)
+                    if let resp = response {
+                        if let d = data {
+                            myDelegate.Task(task, didReceiveResponse: resp, data: d, withinSession: self.session)
+                        }
+                    }
+                    if let er = error {
+                        myDelegate.Task(task, didFailedWithError: error, withinSession: self.session)
+                    }
                 }
             })
             

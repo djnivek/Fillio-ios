@@ -20,9 +20,6 @@ public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate, FIONet
     /// The manager of client tasks. Underlying the session and task.
     lazy var taskManager: FIONetworkTaskManager = FIONetworkTaskManager(client: self, delegate: self)
     
-    /// file d'attente (?)
-    //var queue = FIONetworkHTTPClientQueue()
-    
     /// The root url for the client
     var rootURL: NSURL?
     
@@ -31,14 +28,12 @@ public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate, FIONet
         config.delegate = self
     }
     
-    convenience init(url: NSURL?) {
+    convenience init(url: NSURL) {
         self.init()
-        if let theUrl = url {
-            self.rootURL = theUrl
-        }
+        self.rootURL = url
     }
     
-    public typealias completionWithTuples = ((NSURLResponse?, NSData?)-> Void)?
+    public typealias completionWithTuples = ((NSURLResponse?, NSData?, NSError?)-> Void)?
     public typealias functionSetting = (String, completionWithTuples) -> FIONetworkTask
     
     public subscript (url: String) -> functionSetting {
@@ -49,7 +44,7 @@ public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate, FIONet
                 var task = FIONetworkTask(param: param, url: url)
                 
                 if let block = completion {
-                    task.completionBlock = block
+                    task.blocks.completionBlock = block
                 }
                 
                 // insert task into the taskManager
@@ -77,18 +72,20 @@ public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate, FIONet
     // MARK: Delegate
     
     func Task(task: FIONetworkTask, didReceiveResponse response: NSURLResponse?, data: NSData?, withinSession session: NSURLSession) {
-        if let completion = task.completionBlock {
-            completion(response, data)
+        
+        task.blocks.AllCompletionBlock(response, data, nil)
+        
+        if let completionSuccess = task.blocks.completionSuccessBlock {
+            completionSuccess(response, data)
         }
     }
     
-    /*func didUploadProgress(withinSession session: NSURLSession, forTask task: NSURLSessionTask, withProgress progress: NSProgress) {
-        
+    func Task(task: FIONetworkTask, didFailedWithError error: NSError, withinSession session: NSURLSession) {
+        task.blocks.AllCompletionBlock(nil, nil, error)
+        if let completionFail = task.blocks.completionFailBlock {
+            completionFail(error)
+        }
     }
-    
-    func downloadProgress(withinSession session: NSURLSession, forTask task: NSURLSessionTask, withProgress progress: NSProgress) {
-        
-    }*/
     
     // MARK: -
     
