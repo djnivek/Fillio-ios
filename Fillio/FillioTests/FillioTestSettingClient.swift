@@ -39,5 +39,21 @@ class FillioTestSettingClient: XCTestCase {
         apiClient.config.sessionType = FIONetworkHTTPSessionType.EphemeralSession
         apiClient.config.allowCellularAccess = false
     }
+    
+    func testSetUrl() {
+        var client = FIONetwork.clientWithRootUrl("http://www.google.fr")
+        //XCTAssert(client.url?.absolute != nil, "L'url n'est pas définie")
+    }
+    
+    func testSuffixForURL() {
+        var s = "test/"
+        XCTAssert(s.hasSuffix("/"), "The string doesn't finish with contain '/'")
+    }
+    
+    func testInitUrl() {
+        var url = NSURL(string: "http://www.google.fr/test/1.php/")
+        println(url?.path)
+        XCTAssert(url != nil, "L'url n'a pas été initialisée correctement")
+    }
 
 }

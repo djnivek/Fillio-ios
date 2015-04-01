@@ -95,7 +95,7 @@ public class FIONetworkTask {
     let param: String
     
     /// The url for the task
-    let url: String
+    public let url: String
     
     /// The session task associated to self
     var sessionTask: NSURLSessionTask?

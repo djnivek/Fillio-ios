@@ -39,10 +39,16 @@ class FIOTestGetDataCustomClient: XCTestCase {
         api.config.autostartTask = true
         api.config.sessionType = FIONetworkHTTPSessionType.EphemeralSession
         var expectation = self.expectationWithDescription("Api Request")
-        var task = api["/user/1"]("") {
-            println("data ->\($0)")
-            println("response -> \($1)")
-            println("error -> \($2)")
+        var task = api["class/user/1"]("") {
+            (let resp, let data, let error) in
+            XCTAssert(data != nil, "Les données n'ont pas été récupérées")
+            if let d = data {
+                var str = NSString(data: d, encoding: NSUTF8StringEncoding)
+                println("str : \(str)")
+            }
+            println("response -> \(resp)")
+            println("data ->\(data)")
+            println("error -> \(error)")
             expectation.fulfill()
         }
         

@@ -53,7 +53,11 @@ class FillioTestNetworkBlock: XCTestCase {
         api.config.autostartTask = true
         api.config.sessionType = FIONetworkHTTPSessionType.EphemeralSession
         var expectation = self.expectationWithDescription("Valid url success block")
-        var task = api["/user/1"]("", nil)
+        var task = api[""]("", nil)
+        task.blocks.Fail {
+            (let error) in
+            println("Error -> \(error)")
+        }
         task.blocks.Success {
             (let response, let data) in
             println("The response is '\(response)'")
@@ -90,7 +94,7 @@ class FillioTestNetworkBlock: XCTestCase {
             println("The response is '\(response)'")
             println("The data is '\(data)'")
             println("The error is '\(error)'")
-            expectation.fulfill()
+            //expectation.fulfill()
         }
         
         task.blocks.Complete {

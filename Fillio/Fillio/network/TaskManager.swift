@@ -8,12 +8,21 @@
 
 import Foundation
 
+// MARK: - TaskManager Delegate -
+
 protocol FIONetworkTaskManagerDelegate {
+    
+    /// Tells the delegate that a response has received from the task (required)
     func Task(task: FIONetworkTask, didReceiveResponse response: NSURLResponse?, data: NSData?, withinSession session: NSURLSession)
+    
+    /// Tells the delegate that a error occurred (required)
     func Task(task: FIONetworkTask, didFailedWithError error: NSError, withinSession session: NSURLSession)
+    
     /*func didUploadProgress(withinSession session: NSURLSession, forTask task: NSURLSessionTask, withProgress progress: NSProgress)
     func downloadProgress(withinSession session: NSURLSession, forTask task: NSURLSessionTask, withProgress progress: NSProgress)*/
 }
+
+// MARK: - TaskManager -
 
 class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloadDelegate, NSURLSessionTaskDelegate {
     
@@ -34,6 +43,9 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
         self.delegate = delegate
     }
     
+    /// This method add the task within the session and start/idle it depending on the configuration
+    ///
+    /// :param: task The task to add within the session
     func addTaskToQueue(task: FIONetworkTask) {
         
         // Add task to session
@@ -65,6 +77,8 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
         }
     }
     
+    // MARK: - Session Delegate -
+    
     func URLSession(session: NSURLSession, task: NSURLSessionTask, willPerformHTTPRedirection response: NSHTTPURLResponse, newRequest request: NSURLRequest, completionHandler: (NSURLRequest!) -> Void) {
         println("willPerform")
     }
@@ -80,6 +94,4 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         println("didReceiveBodyData")
     }
-    
-    //URLS
 }
