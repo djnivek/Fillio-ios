@@ -27,7 +27,7 @@ public class FIONetwork {
         clients[FIONetwork.DEFAULT_CLIENT_ID] = FIONetworkHTTPClient()
     }
     
-    /// This method create a client with a root url
+    /// This method create/get a client with a root url
     public class func clientWithRootUrl(rootUrl: NSString) -> FIONetworkHTTPClient {
         if let client = FIONetwork.instance.clients[rootUrl] {
             return client

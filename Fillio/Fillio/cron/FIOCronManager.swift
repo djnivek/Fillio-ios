@@ -10,4 +10,7 @@ import Foundation
 
 class FIOCronManager {
     
+    /// List of jobs linked to self
+    private var jobs = [FIOCronJob]()
+    
 }
