@@ -109,10 +109,8 @@ public class FIONetworkTask {
     /// Both can be used
     func completionHandler(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void {
         
-        let resp = FIONetworkResponse(response: response, data: data)
-        if let bar: AnyObject = resp.response {
-            println(bar)
-        }
+        let resp = FIONetworkTaskResponse(response: response, data: data)
+        println(resp.response)
         
         
 //        if let myDelegate = self.delegate {

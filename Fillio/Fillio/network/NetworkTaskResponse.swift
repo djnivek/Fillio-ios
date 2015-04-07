@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FIONetworkResponse {
+class FIONetworkTaskResponse {
     
     private let _response: NSURLResponse
     
@@ -40,7 +40,7 @@ class FIONetworkResponse {
 }
 
 /// The response body
-enum FIONetworkResponseBody {
+private enum FIONetworkResponseBody {
     
     case JSON(NSData)
     
@@ -53,6 +53,9 @@ enum FIONetworkResponseBody {
         case .JSON(let data) :
             var serializeError: NSError?
             if let json: AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &serializeError) {
+                if let error = serializeError {
+                    return ["error":error.description]
+                }
                 return json
             }
             return ["error":"Cannot parse JSON"]
