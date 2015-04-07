@@ -10,15 +10,15 @@ import Foundation
 
 public protocol FIONetworkTaskDelegate {
     /// Tells the delegate that a response has received from the task (required)
-    func Task(task: FIONetworkTask, didReceiveResponse response: AnyObject, withinSession session: NSURLSession)
+    func Task(task: FIONetworkTask, didReceiveResponse response: AnyObject)
     
     /// Tells the delegate that a error occurred (required)
-    func Task(task: FIONetworkTask, didFailedWithError error: NSError, withinSession session: NSURLSession?)
+    func Task(task: FIONetworkTask, didFailedWithError error: NSError)
 }
 
 public class FIONetworkTask {
 
-    public typealias successHandlerParam = (AnyObject?)
+    public typealias successHandlerParam = (AnyObject)
     public typealias completeHandlerParam = (AnyObject?, NSError?)
     
     /// The completion blocks of the task
@@ -118,12 +118,13 @@ public class FIONetworkTask {
     
     public var response: FIONetworkTaskResponse? {
         didSet {
+            
             if let theDelegate = self.delegate {
                 if let resp = response {
                     if resp.isFailed {
-                        //theDelegate.Task(self, didFailedWithError: resp.error!, withinSession: self.sessionTask!)
+                        theDelegate.Task(self, didFailedWithError: resp.error!)
                     } else {
-                        //theDelegate.Task(self, didReceiveResponse: resp.data, withinSession: self.sessionTask!)
+                        theDelegate.Task(self, didReceiveResponse: resp.data)
                     }
                 }
             }

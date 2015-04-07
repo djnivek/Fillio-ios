@@ -63,6 +63,11 @@ class FIOTestGetDataCustomClient: XCTestCase {
             (let resp, let error) in
             println("response -> \(resp)")
             println("error -> \(error)")
+        }
+        
+        task.blocks.Success {
+            (let response) in
+            println("The response is '\(response)'")
             expectation.fulfill()
         }
         

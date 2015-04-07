@@ -48,6 +48,9 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
     /// :param: task The task to add within the session
     func addTaskToQueue(task: FIONetworkTask) {
         
+        // set delegate
+        task.delegate = self
+        
         // Add task to session
         if let request = task.request {
             let theTask: NSURLSessionTask = session.dataTaskWithRequest(request, completionHandler: task.completionHandler)
@@ -67,18 +70,26 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
 
     // MARK: - NetworkTask Delegate -
     
-    func Task(task: FIONetworkTask, didFailedWithError error: NSError, withinSession session: NSURLSession?) {
+    func Task(task: FIONetworkTask, didFailedWithError error: NSError) {
+        
+        // call all block
         task.blocks.AllCompletionBlock(nil, error)
         if let completionFail = task.blocks.completionFailBlock {
             completionFail(error)
         }
+        
+        // call delegate
     }
     
-    func Task(task: FIONetworkTask, didReceiveResponse response: AnyObject, withinSession session: NSURLSession) {
+    func Task(task: FIONetworkTask, didReceiveResponse response: AnyObject) {
+        
+        // call all block
         task.blocks.AllCompletionBlock(response, nil)
         if let completionSuccess = task.blocks.completionSuccessBlock {
             completionSuccess(response)
         }
+        
+        // call delegate
     }
     
     // MARK: - Session Delegate -
