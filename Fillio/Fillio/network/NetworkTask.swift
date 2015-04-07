@@ -100,8 +100,36 @@ public class FIONetworkTask {
     /// The session task associated to self
     var sessionTask: NSURLSessionTask?
     
+    /// The blocks struct that tells callback on completion
     public var blocks: CompletionBlock
     
+    /// The completion handler called when the load request is complete.
+    ///
+    /// Should be set on a 'block way' used rather than 'delegate way'.
+    /// Both can be used
+    func completionHandler(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void {
+        
+        var foo = FIONetworkResponseBody.JSON(data)
+        var bar = foo.data
+        
+        println(bar)
+        
+//        if let myDelegate = self.delegate {
+//            if let resp = response {
+//                if let d = data {
+//                    myDelegate.Task(task, didReceiveResponse: resp, data: d, withinSession: self.session)
+//                }
+//            }
+//            if let er = error {
+//                myDelegate.Task(task, didFailedWithError: error, withinSession: self.session)
+//            }
+//        }
+        
+    }
+    
+    //private func
+    
+    /// The computed request of the task
     var request: NSURLRequest? {
         if let theURL = NSURL(string: self.url) {
             return NSURLRequest(URL: theURL)

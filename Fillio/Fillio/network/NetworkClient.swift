@@ -41,7 +41,7 @@ extension String {
 /// - TaskManager
 ///
 /// The client underly the taskManager logic
-public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate, FIONetworkTaskManagerDelegate {
+public class FIONetworkClient: FIONetworkClientConfigurationDelegate, FIONetworkTaskManagerDelegate {
     
     /// configuration destinée à la session
     public var config: FIONetworkClientConfiguration = FIONetworkClientConfiguration() {
@@ -90,7 +90,7 @@ public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate, FIONet
         /**
             The computed port from url
         
-        :returns: Optional string like 8888 for http://locahost:8888/test.php
+            :returns: Optional string like 8888 for http://locahost:8888/test.php
         */
         private var port: String? {
             return url?.port?.stringValue
@@ -135,12 +135,13 @@ public class FIONetworkHTTPClient: FIONetworkClientConfigurationDelegate, FIONet
         self.taskManager = FIONetworkTaskManager(client: self, delegate: self)
     }
     
-    public typealias completionWithTuples = ((NSURLResponse?, NSData?, NSError?)-> Void)?
-    public typealias functionSetting = (String, completionWithTuples) -> FIONetworkTask
+    public typealias completionWithTuples = ((NSURLResponse?, NSData?, NSError?)-> Void)
+    public typealias functionSetting = (String, completionWithTuples?) -> FIONetworkTask
     
     public subscript (path: String) -> functionSetting {
         get {
-            var res: functionSetting = { (param: String, completion: completionWithTuples) in
+            var res: functionSetting = {
+                (param: String, completion: completionWithTuples?) in
                 
                 // create task with elements
                 var theFullUrl = ""

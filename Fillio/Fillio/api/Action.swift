@@ -43,7 +43,7 @@ class FIOApiAction {
         /*let request = HTTPRequest(method: .GET)
         request.url = "user/dev/center"
         request.method
-        FIONetworkHTTPClient.sharedClient[request] = {
+        FIONetworkClient.sharedClient[request] = {
             
         }*/
     }

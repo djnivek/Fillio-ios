@@ -8,9 +8,13 @@
 
 import Foundation
 
-enum HTTPResponseBody {
+/// The response body
+enum FIONetworkResponseBody {
+    
     case JSON(AnyObject)
+    
     case XML(AnyObject)
+    
     case HTML(String)
     
     var data: String {

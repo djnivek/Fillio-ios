@@ -7,26 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E072F5B1AC083C5005653B1 /* FIONetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E072F5A1AC083C5005653B1 /* FIONetwork.swift */; };
+		0E072F5B1AC083C5005653B1 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E072F5A1AC083C5005653B1 /* Network.swift */; };
+		0E07FE7A1ACEED1E00F938F4 /* NetworkResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E07FE791ACEED1E00F938F4 /* NetworkResultObject.swift */; };
 		0E1716D11ABC73D800AF0E40 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1716D01ABC73D800AF0E40 /* HTTPMethod.swift */; };
-		0E1716D31ABC73F500AF0E40 /* HTTPReponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1716D21ABC73F500AF0E40 /* HTTPReponseBody.swift */; };
+		0E1716D31ABC73F500AF0E40 /* NetworkReponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1716D21ABC73F500AF0E40 /* NetworkReponseBody.swift */; };
 		0E65812F1AC977E5000C5FD3 /* FillioTestCallMethodClientTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E65812E1AC977E5000C5FD3 /* FillioTestCallMethodClientTask.swift */; };
 		0E6581311AC97815000C5FD3 /* FillioTestSettingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6581301AC97815000C5FD3 /* FillioTestSettingClient.swift */; };
 		0E6581331AC9A423000C5FD3 /* FIOTestGetDataCustomClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6581321AC9A423000C5FD3 /* FIOTestGetDataCustomClient.swift */; };
 		0E6581351ACB126A000C5FD3 /* FillioTestNetworkBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6581341ACB126A000C5FD3 /* FillioTestNetworkBlock.swift */; };
-		0E679A801AC2EBE8007A1E77 /* HTTPClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E679A7F1AC2EBE8007A1E77 /* HTTPClientConfiguration.swift */; };
-		0E679A821AC339CC007A1E77 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E679A811AC339CC007A1E77 /* HTTPTask.swift */; };
+		0E679A801AC2EBE8007A1E77 /* NetworkClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E679A7F1AC2EBE8007A1E77 /* NetworkClientConfiguration.swift */; };
+		0E679A821AC339CC007A1E77 /* NetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E679A811AC339CC007A1E77 /* NetworkTask.swift */; };
 		0E7D68081AAE11B800BDB176 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D68071AAE11B800BDB176 /* User.swift */; };
 		0E7D680B1AAE11C800BDB176 /* Sendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D68091AAE11C800BDB176 /* Sendable.swift */; };
 		0E7D680C1AAE11C800BDB176 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D680A1AAE11C800BDB176 /* Object.swift */; };
-		0E7D680F1AAE124300BDB176 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D680D1AAE124300BDB176 /* HTTPClient.swift */; };
+		0E7D680F1AAE124300BDB176 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D680D1AAE124300BDB176 /* NetworkClient.swift */; };
 		0E7D68151AAE404900BDB176 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D68141AAE404900BDB176 /* Action.swift */; };
 		0E973EB11ABA28F40021EF03 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E973EB01ABA28F40021EF03 /* HTTPRequest.swift */; };
 		0E978ED21ACEB1DF00001673 /* FIOCron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E978ED11ACEB1DF00001673 /* FIOCron.swift */; };
 		0E978ED41ACEB24700001673 /* FIOCronManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E978ED31ACEB24700001673 /* FIOCronManager.swift */; };
 		0E978ED61ACEB25A00001673 /* FIOCronJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E978ED51ACEB25A00001673 /* FIOCronJob.swift */; };
 		0E978ED81ACEDDB200001673 /* FIOCronTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E978ED71ACEDDB200001673 /* FIOCronTab.swift */; };
-		0EAED9281AC2958B0090ECB7 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAED9271AC2958B0090ECB7 /* TaskManager.swift */; };
+		0EAED9281AC2958B0090ECB7 /* NetworkTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAED9271AC2958B0090ECB7 /* NetworkTaskManager.swift */; };
 		0EBE8DFC1AADB6FA00148C8B /* FIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EBE8DFB1AADB6FA00148C8B /* FIO.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0EBE8E021AADB6FA00148C8B /* Fillio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EBE8DF61AADB6FA00148C8B /* Fillio.framework */; };
 		0EBE8E091AADB6FA00148C8B /* FillioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE8E081AADB6FA00148C8B /* FillioTests.swift */; };
@@ -43,26 +44,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0E072F5A1AC083C5005653B1 /* FIONetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIONetwork.swift; path = network/FIONetwork.swift; sourceTree = "<group>"; };
+		0E072F5A1AC083C5005653B1 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Network.swift; path = network/Network.swift; sourceTree = "<group>"; };
+		0E07FE791ACEED1E00F938F4 /* NetworkResultObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkResultObject.swift; path = network/NetworkResultObject.swift; sourceTree = "<group>"; };
 		0E1716D01ABC73D800AF0E40 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPMethod.swift; path = network/HTTPMethod.swift; sourceTree = "<group>"; };
-		0E1716D21ABC73F500AF0E40 /* HTTPReponseBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPReponseBody.swift; path = network/HTTPReponseBody.swift; sourceTree = "<group>"; };
+		0E1716D21ABC73F500AF0E40 /* NetworkReponseBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkReponseBody.swift; path = network/NetworkReponseBody.swift; sourceTree = "<group>"; };
 		0E65812E1AC977E5000C5FD3 /* FillioTestCallMethodClientTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillioTestCallMethodClientTask.swift; sourceTree = "<group>"; };
 		0E6581301AC97815000C5FD3 /* FillioTestSettingClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillioTestSettingClient.swift; sourceTree = "<group>"; };
 		0E6581321AC9A423000C5FD3 /* FIOTestGetDataCustomClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIOTestGetDataCustomClient.swift; sourceTree = "<group>"; };
 		0E6581341ACB126A000C5FD3 /* FillioTestNetworkBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillioTestNetworkBlock.swift; sourceTree = "<group>"; };
-		0E679A7F1AC2EBE8007A1E77 /* HTTPClientConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPClientConfiguration.swift; path = network/HTTPClientConfiguration.swift; sourceTree = "<group>"; };
-		0E679A811AC339CC007A1E77 /* HTTPTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPTask.swift; path = network/HTTPTask.swift; sourceTree = "<group>"; };
+		0E679A7F1AC2EBE8007A1E77 /* NetworkClientConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkClientConfiguration.swift; path = network/NetworkClientConfiguration.swift; sourceTree = "<group>"; };
+		0E679A811AC339CC007A1E77 /* NetworkTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkTask.swift; path = network/NetworkTask.swift; sourceTree = "<group>"; };
 		0E7D68071AAE11B800BDB176 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = auth/User.swift; sourceTree = "<group>"; };
 		0E7D68091AAE11C800BDB176 /* Sendable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sendable.swift; path = api/Sendable.swift; sourceTree = "<group>"; };
 		0E7D680A1AAE11C800BDB176 /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Object.swift; path = api/Object.swift; sourceTree = "<group>"; };
-		0E7D680D1AAE124300BDB176 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPClient.swift; path = network/HTTPClient.swift; sourceTree = "<group>"; };
+		0E7D680D1AAE124300BDB176 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkClient.swift; path = network/NetworkClient.swift; sourceTree = "<group>"; };
 		0E7D68141AAE404900BDB176 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Action.swift; path = api/Action.swift; sourceTree = "<group>"; };
 		0E973EB01ABA28F40021EF03 /* HTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPRequest.swift; path = network/HTTPRequest.swift; sourceTree = "<group>"; };
 		0E978ED11ACEB1DF00001673 /* FIOCron.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIOCron.swift; path = cron/FIOCron.swift; sourceTree = "<group>"; };
 		0E978ED31ACEB24700001673 /* FIOCronManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIOCronManager.swift; path = cron/FIOCronManager.swift; sourceTree = "<group>"; };
 		0E978ED51ACEB25A00001673 /* FIOCronJob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIOCronJob.swift; path = cron/FIOCronJob.swift; sourceTree = "<group>"; };
 		0E978ED71ACEDDB200001673 /* FIOCronTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIOCronTab.swift; path = cron/FIOCronTab.swift; sourceTree = "<group>"; };
-		0EAED9271AC2958B0090ECB7 /* TaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskManager.swift; path = network/TaskManager.swift; sourceTree = "<group>"; };
+		0EAED9271AC2958B0090ECB7 /* NetworkTaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkTaskManager.swift; path = network/NetworkTaskManager.swift; sourceTree = "<group>"; };
 		0EBE8DF61AADB6FA00148C8B /* Fillio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fillio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EBE8DFA1AADB6FA00148C8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EBE8DFB1AADB6FA00148C8B /* FIO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FIO.h; sourceTree = "<group>"; };
@@ -122,11 +124,11 @@
 		0EBE8DF81AADB6FA00148C8B /* Fillio */ = {
 			isa = PBXGroup;
 			children = (
-				0E978ED01ACEB1B200001673 /* cron */,
 				0EBE8DFB1AADB6FA00148C8B /* FIO.h */,
-				0EBE8E151AADB79500148C8B /* auth */,
-				0EBE8E141AADB78500148C8B /* network */,
 				0EBE8E131AADB77C00148C8B /* api */,
+				0EBE8E151AADB79500148C8B /* auth */,
+				0E978ED01ACEB1B200001673 /* cron */,
+				0EBE8E141AADB78500148C8B /* network */,
 				0EBE8E121AADB77000148C8B /* media */,
 				0EBE8DF91AADB6FA00148C8B /* Supporting Files */,
 			);
@@ -148,8 +150,8 @@
 				0E65812E1AC977E5000C5FD3 /* FillioTestCallMethodClientTask.swift */,
 				0E6581321AC9A423000C5FD3 /* FIOTestGetDataCustomClient.swift */,
 				0E6581301AC97815000C5FD3 /* FillioTestSettingClient.swift */,
-				0EBE8E061AADB6FA00148C8B /* Supporting Files */,
 				0E6581341ACB126A000C5FD3 /* FillioTestNetworkBlock.swift */,
+				0EBE8E061AADB6FA00148C8B /* Supporting Files */,
 			);
 			path = FillioTests;
 			sourceTree = "<group>";
@@ -182,14 +184,15 @@
 		0EBE8E141AADB78500148C8B /* network */ = {
 			isa = PBXGroup;
 			children = (
-				0E679A7F1AC2EBE8007A1E77 /* HTTPClientConfiguration.swift */,
-				0E072F5A1AC083C5005653B1 /* FIONetwork.swift */,
-				0E7D680D1AAE124300BDB176 /* HTTPClient.swift */,
+				0E679A7F1AC2EBE8007A1E77 /* NetworkClientConfiguration.swift */,
+				0E072F5A1AC083C5005653B1 /* Network.swift */,
+				0E7D680D1AAE124300BDB176 /* NetworkClient.swift */,
 				0E973EB01ABA28F40021EF03 /* HTTPRequest.swift */,
 				0E1716D01ABC73D800AF0E40 /* HTTPMethod.swift */,
-				0E1716D21ABC73F500AF0E40 /* HTTPReponseBody.swift */,
-				0EAED9271AC2958B0090ECB7 /* TaskManager.swift */,
-				0E679A811AC339CC007A1E77 /* HTTPTask.swift */,
+				0E1716D21ABC73F500AF0E40 /* NetworkReponseBody.swift */,
+				0EAED9271AC2958B0090ECB7 /* NetworkTaskManager.swift */,
+				0E679A811AC339CC007A1E77 /* NetworkTask.swift */,
+				0E07FE791ACEED1E00F938F4 /* NetworkResultObject.swift */,
 			);
 			name = network;
 			sourceTree = "<group>";
@@ -310,18 +313,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E7D68081AAE11B800BDB176 /* User.swift in Sources */,
-				0E679A801AC2EBE8007A1E77 /* HTTPClientConfiguration.swift in Sources */,
+				0E679A801AC2EBE8007A1E77 /* NetworkClientConfiguration.swift in Sources */,
 				0E978ED81ACEDDB200001673 /* FIOCronTab.swift in Sources */,
 				0E978ED21ACEB1DF00001673 /* FIOCron.swift in Sources */,
+				0E07FE7A1ACEED1E00F938F4 /* NetworkResultObject.swift in Sources */,
 				0E7D68151AAE404900BDB176 /* Action.swift in Sources */,
 				0E7D680C1AAE11C800BDB176 /* Object.swift in Sources */,
-				0EAED9281AC2958B0090ECB7 /* TaskManager.swift in Sources */,
-				0E7D680F1AAE124300BDB176 /* HTTPClient.swift in Sources */,
-				0E679A821AC339CC007A1E77 /* HTTPTask.swift in Sources */,
-				0E1716D31ABC73F500AF0E40 /* HTTPReponseBody.swift in Sources */,
+				0EAED9281AC2958B0090ECB7 /* NetworkTaskManager.swift in Sources */,
+				0E7D680F1AAE124300BDB176 /* NetworkClient.swift in Sources */,
+				0E679A821AC339CC007A1E77 /* NetworkTask.swift in Sources */,
+				0E1716D31ABC73F500AF0E40 /* NetworkReponseBody.swift in Sources */,
 				0E1716D11ABC73D800AF0E40 /* HTTPMethod.swift in Sources */,
 				0E973EB11ABA28F40021EF03 /* HTTPRequest.swift in Sources */,
-				0E072F5B1AC083C5005653B1 /* FIONetwork.swift in Sources */,
+				0E072F5B1AC083C5005653B1 /* Network.swift in Sources */,
 				0E978ED41ACEB24700001673 /* FIOCronManager.swift in Sources */,
 				0E7D680B1AAE11C800BDB176 /* Sendable.swift in Sources */,
 				0E978ED61ACEB25A00001673 /* FIOCronJob.swift in Sources */,

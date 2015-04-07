@@ -8,10 +8,10 @@
 
 import Foundation
 
-public struct HTTPRequest {
+/*public struct HTTPRequest {
     var url: String
     var params: NSDictionary?
     var method: HTTPMethod
     var headers: String
     var body: String?
-}
+}*/

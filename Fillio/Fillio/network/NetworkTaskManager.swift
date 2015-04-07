@@ -36,9 +36,9 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
     private var tasks = [FIONetworkTask]()
     
     /// The client provided to the taskManager
-    unowned let ownClient: FIONetworkHTTPClient
+    unowned let ownClient: FIONetworkClient
     
-    init(client: FIONetworkHTTPClient, delegate: FIONetworkTaskManagerDelegate) {
+    init(client: FIONetworkClient, delegate: FIONetworkTaskManagerDelegate) {
         self.ownClient = client
         self.delegate = delegate
     }
@@ -50,19 +50,7 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
         
         // Add task to session
         if let request = task.request {
-            let theTask: NSURLSessionTask = session.dataTaskWithRequest(request, completionHandler: {
-                (data, response, error) in
-                if let myDelegate = self.delegate {
-                    if let resp = response {
-                        if let d = data {
-                            myDelegate.Task(task, didReceiveResponse: resp, data: d, withinSession: self.session)
-                        }
-                    }
-                    if let er = error {
-                        myDelegate.Task(task, didFailedWithError: error, withinSession: self.session)
-                    }
-                }
-            })
+            let theTask: NSURLSessionTask = session.dataTaskWithRequest(request, completionHandler: task.completionHandler)
             
             // add sessionTask to the task
             task.sessionTask = theTask
