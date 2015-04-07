@@ -8,8 +8,19 @@
 
 import Foundation
 
+enum FIONetworkResultType {
+    case Image
+    case Object
+}
+
 class FIONetworkResultObject {
     
+    private var properties: [String:Any]?
     
-    
+    subscript (path: AnyObject) -> AnyObject? {
+        get {
+            
+        }
+    }
+
 }
