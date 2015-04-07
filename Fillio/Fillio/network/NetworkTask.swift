@@ -103,9 +103,9 @@ public class FIONetworkTask {
     /// The blocks struct that tells callback on completion
     public var blocks: CompletionBlock
     
-    /// The completion handler called when the load request is complete.
+    /// The completion handler called when the load request is complete (session.dataTaskWithRequest).
     ///
-    /// Should be set on a 'block way' used rather than 'delegate way'.
+    /// Should be set on a block usage rather than delegate.
     /// Both can be used
     func completionHandler(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void {
         
