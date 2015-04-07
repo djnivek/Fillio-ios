@@ -59,9 +59,8 @@ class FillioTestNetworkBlock: XCTestCase {
             println("Error -> \(error)")
         }
         task.blocks.Success {
-            (let response, let data) in
+            (let response) in
             println("The response is '\(response)'")
-            println("The data is '\(data)'")
             expectation.fulfill()
         }
         waitForExpectationsWithTimeout(5.0, handler: nil)
@@ -74,9 +73,8 @@ class FillioTestNetworkBlock: XCTestCase {
         var expectation = self.expectationWithDescription("Valid url success block")
         var task = api[""]("", nil)
         task.blocks.Complete {
-            (let response, let data, let error) in
+            (let response, let error) in
             println("The response is '\(response)'")
-            println("The data is '\(data)'")
             println("The error is '\(error)'")
             expectation.fulfill()
         }
@@ -90,17 +88,15 @@ class FillioTestNetworkBlock: XCTestCase {
         var expectation = self.expectationWithDescription("Valid url success block")
         
         var task = api[""]("") {
-            (let response, let data, let error) in
+            (let response, let error) in
             println("The response is '\(response)'")
-            println("The data is '\(data)'")
             println("The error is '\(error)'")
             //expectation.fulfill()
         }
         
         task.blocks.Complete {
-            (let response, let data, let error) in
+            (let response, let error) in
             println("The response is '\(response)'")
-            println("The data is '\(data)'")
             println("The error is '\(error)'")
             expectation.fulfill()
         }

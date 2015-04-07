@@ -13,7 +13,7 @@ import Foundation
 protocol FIONetworkTaskManagerDelegate {
     
     /// Tells the delegate that a response has received from the task (required)
-    func Task(task: FIONetworkTask, didReceiveResponse response: NSURLResponse?, data: NSData?, withinSession session: NSURLSession)
+    func Task(task: FIONetworkTask, didReceiveResponse response: AnyObject, withinSession session: NSURLSession)
     
     /// Tells the delegate that a error occurred (required)
     func Task(task: FIONetworkTask, didFailedWithError error: NSError, withinSession session: NSURLSession)
@@ -24,13 +24,13 @@ protocol FIONetworkTaskManagerDelegate {
 
 // MARK: - TaskManager -
 
-class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloadDelegate, NSURLSessionTaskDelegate {
+class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloadDelegate, NSURLSessionTaskDelegate, FIONetworkTaskDelegate {
     
     /// The client session, sharedSession by default
     var session: NSURLSession = NSURLSession.sharedSession()
     
     /// The delegate
-    var delegate: FIONetworkTaskManagerDelegate?
+    //var delegate: FIONetworkTaskManagerDelegate?
     
     /// The stack of tasks
     private var tasks = [FIONetworkTask]()
@@ -38,9 +38,9 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
     /// The client provided to the taskManager
     unowned let ownClient: FIONetworkClient
     
-    init(client: FIONetworkClient, delegate: FIONetworkTaskManagerDelegate) {
+    init(client: FIONetworkClient) {
         self.ownClient = client
-        self.delegate = delegate
+        //self.delegate = delegate
     }
     
     /// This method add the task within the session and start/idle it depending on the configuration
@@ -62,6 +62,22 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
             if ownClient.config.autostartTask {
                 theTask.resume()
             }
+        }
+    }
+
+    // MARK: - NetworkTask Delegate -
+    
+    func Task(task: FIONetworkTask, didFailedWithError error: NSError, withinSession session: NSURLSession?) {
+        task.blocks.AllCompletionBlock(nil, error)
+        if let completionFail = task.blocks.completionFailBlock {
+            completionFail(error)
+        }
+    }
+    
+    func Task(task: FIONetworkTask, didReceiveResponse response: AnyObject, withinSession session: NSURLSession) {
+        task.blocks.AllCompletionBlock(response, nil)
+        if let completionSuccess = task.blocks.completionSuccessBlock {
+            completionSuccess(response)
         }
     }
     

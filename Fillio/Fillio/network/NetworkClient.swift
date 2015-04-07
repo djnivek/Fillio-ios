@@ -41,7 +41,7 @@ extension String {
 /// - TaskManager
 ///
 /// The client underly the taskManager logic
-public class FIONetworkClient: FIONetworkClientConfigurationDelegate, FIONetworkTaskManagerDelegate {
+public class FIONetworkClient: FIONetworkClientConfigurationDelegate {
     
     /// configuration destinée à la session
     public var config: FIONetworkClientConfiguration = FIONetworkClientConfiguration() {
@@ -51,7 +51,7 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate, FIONetwork
     }
     
     /// The manager of client tasks. Underlying the session and task.
-    lazy var taskManager: FIONetworkTaskManager = FIONetworkTaskManager(client: self, delegate: self)
+    lazy var taskManager: FIONetworkTaskManager = FIONetworkTaskManager(client: self)
     
     /// This struct provide a client url
     public struct URL {
@@ -132,10 +132,10 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate, FIONetwork
     convenience init(rootUrl: String) {
         self.init()
         self.url?.absolute = rootUrl
-        self.taskManager = FIONetworkTaskManager(client: self, delegate: self)
+        self.taskManager = FIONetworkTaskManager(client: self)
     }
     
-    public typealias completionWithTuples = ((NSURLResponse?, NSData?, NSError?)-> Void)
+    public typealias completionWithTuples = ((AnyObject?, NSError?)-> Void)
     public typealias functionSetting = (String, completionWithTuples?) -> FIONetworkTask
     
     public subscript (path: String) -> functionSetting {
@@ -188,24 +188,6 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate, FIONetwork
     
     func didChangedSessionConfig(config: FIONetworkClientConfiguration) {
         resetSessionWithConfig(config)
-    }
-    
-    // MARK: Delegate
-    
-    func Task(task: FIONetworkTask, didReceiveResponse response: NSURLResponse?, data: NSData?, withinSession session: NSURLSession) {
-        
-        task.blocks.AllCompletionBlock(response, data, nil)
-        
-        if let completionSuccess = task.blocks.completionSuccessBlock {
-            completionSuccess(response, data)
-        }
-    }
-    
-    func Task(task: FIONetworkTask, didFailedWithError error: NSError, withinSession session: NSURLSession) {
-        task.blocks.AllCompletionBlock(nil, nil, error)
-        if let completionFail = task.blocks.completionFailBlock {
-            completionFail(error)
-        }
     }
     
     // MARK: -

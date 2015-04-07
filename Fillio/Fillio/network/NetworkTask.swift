@@ -8,8 +8,19 @@
 
 import Foundation
 
+public protocol FIONetworkTaskDelegate {
+    /// Tells the delegate that a response has received from the task (required)
+    func Task(task: FIONetworkTask, didReceiveResponse response: AnyObject, withinSession session: NSURLSession)
+    
+    /// Tells the delegate that a error occurred (required)
+    func Task(task: FIONetworkTask, didFailedWithError error: NSError, withinSession session: NSURLSession?)
+}
+
 public class FIONetworkTask {
 
+    public typealias successHandlerParam = (AnyObject?)
+    public typealias completeHandlerParam = (AnyObject?, NSError?)
+    
     /// The completion blocks of the task
     ///
     /// - Success: The completion block called when the task finished
@@ -18,7 +29,7 @@ public class FIONetworkTask {
     public struct CompletionBlock {
         
         /// The alias of the complete block
-        typealias completeBlock = (NSURLResponse?, NSData?, NSError?) -> ()
+        typealias completeBlock = (completeHandlerParam) -> ()
         
         /// The list of the complete block
         private var completionBlocks = [completeBlock]()
@@ -36,7 +47,7 @@ public class FIONetworkTask {
         }
         
         /// The optional block called on success
-        var completionSuccessBlock: ((NSURLResponse?, NSData?) -> ())?
+        var completionSuccessBlock: ((successHandlerParam) -> ())?
         
         /// The optional block called on fail
         var completionFailBlock: ((NSError?) -> ())?
@@ -50,9 +61,9 @@ public class FIONetworkTask {
             :param: data The optional data
             :param: error The optional error
         */
-        public mutating func AllCompletionBlock(response: NSURLResponse?,_ data: NSData?,_ error: NSError?) {
+        public mutating func AllCompletionBlock(response: AnyObject?,_ error: NSError?) {
             for block in completionBlocks {
-                block(response, data, error)
+                block(response, error)
             }
         }
         
@@ -62,7 +73,7 @@ public class FIONetworkTask {
         
             :param: block A handler that the class can call
         */
-        public mutating func Complete(block: (NSURLResponse?, NSData?, NSError?)->()) {
+        public mutating func Complete(block: (completeHandlerParam)->()) {
             self.completionBlock = block
         }
         
@@ -82,11 +93,11 @@ public class FIONetworkTask {
         
             :param: block A handler that the class can call
         */
-        public mutating func Success(block: (NSURLResponse?, NSData?)->()) {
+        public mutating func Success(block: (successHandlerParam)->()) {
             self.completionSuccessBlock = block
         }
         
-        init(_ completionBlock:((NSURLResponse?, NSData?, NSError?) -> ())?, _ completionSuccessBlock:((NSURLResponse?, NSData?) -> ())?, _ completionFailBlock:((NSError?) -> ())?) {
+        init(_ completionBlock:((AnyObject?, NSError?) -> ())?, _ completionSuccessBlock:((AnyObject?) -> ())?, _ completionFailBlock:((NSError?) -> ())?) {
             
         }
     }
@@ -103,27 +114,28 @@ public class FIONetworkTask {
     /// The blocks struct that tells callback on completion
     public var blocks: CompletionBlock
     
+    var delegate: FIONetworkTaskDelegate?
+    
+    public var response: FIONetworkTaskResponse? {
+        didSet {
+            if let theDelegate = self.delegate {
+                if let resp = response {
+                    if resp.isFailed {
+                        //theDelegate.Task(self, didFailedWithError: resp.error!, withinSession: self.sessionTask!)
+                    } else {
+                        //theDelegate.Task(self, didReceiveResponse: resp.data, withinSession: self.sessionTask!)
+                    }
+                }
+            }
+        }
+    }
+    
     /// The completion handler called when the load request is complete (session.dataTaskWithRequest).
     ///
     /// Should be set on a block usage rather than delegate.
     /// Both can be used
     func completionHandler(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void {
-        
-        let resp = FIONetworkTaskResponse(response: response, data: data)
-        println(resp.response)
-        
-        
-//        if let myDelegate = self.delegate {
-//            if let resp = response {
-//                if let d = data {
-//                    myDelegate.Task(task, didReceiveResponse: resp, data: d, withinSession: self.session)
-//                }
-//            }
-//            if let er = error {
-//                myDelegate.Task(task, didFailedWithError: error, withinSession: self.session)
-//            }
-//        }
-        
+        self.response = FIONetworkTaskResponse(response: response, data: data)
     }
     
     //private func

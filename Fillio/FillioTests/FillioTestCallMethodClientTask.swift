@@ -41,8 +41,7 @@ class FillioTestCallMethodClientTask: XCTestCase {
         task.blocks.Complete {
             expectation.fulfill()
             println("Response ->\($0)")
-            println("Data -> \($1)")
-            println("Error -> \($2)")
+            println("Error -> \($1)")
         }
         task.resume()
         waitForExpectationsWithTimeout(5.0, handler: nil)
@@ -54,8 +53,7 @@ class FillioTestCallMethodClientTask: XCTestCase {
         var task = client["http://www.google.fr"]("") {
             expectation.fulfill()
             println("Response ->\($0)")
-            println("Data -> \($1)")
-            println("Error -> \($2)")
+            println("Error -> \($1)")
         }
         task.resume()
         waitForExpectationsWithTimeout(5.0, handler: nil)
@@ -68,8 +66,7 @@ class FillioTestCallMethodClientTask: XCTestCase {
         var task = client["http://www.google.fr"]("") {
             expectation.fulfill()
             println("Response ->\($0)")
-            println("Data -> \($1)")
-            println("Error -> \($2)")
+            println("Error -> \($1)")
         }
         waitForExpectationsWithTimeout(5.0, handler: nil)
     }
