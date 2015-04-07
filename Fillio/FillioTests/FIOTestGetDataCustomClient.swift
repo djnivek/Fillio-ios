@@ -59,5 +59,33 @@ class FIOTestGetDataCustomClient: XCTestCase {
         
         waitForExpectationsWithTimeout(5.0, handler: nil)
     }
+    
+    func testGetDataFromTwitterAPI() {
+        var api = FIONetwork.clientWithRootUrl("https://api.twitter.com/1.1/")
+        api.config.autostartTask = true
+        api.config.sessionType = FIONetworkHTTPSessionType.EphemeralSession
+        var expectation = self.expectationWithDescription("Api Request")
+        var task = api["search/tweets.json"]("") {
+            (let resp, let data, let error) in
+            XCTAssert(data != nil, "Les données n'ont pas été récupérées")
+            if let d = data {
+                var str = NSString(data: d, encoding: NSUTF8StringEncoding)
+                println("str : \(str)")
+            }
+            println("response -> \(resp)")
+            println("data ->\(data)")
+            println("error -> \(error)")
+            expectation.fulfill()
+        }
+        
+        task.blocks.Fail {
+            (let error) in
+            println("The error is '\(error)'")
+        }
+        
+        waitForExpectationsWithTimeout(5.0, handler: nil)
+    }
+    
+
 
 }
