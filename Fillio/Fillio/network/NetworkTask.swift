@@ -136,7 +136,14 @@ public class FIONetworkTask {
     /// Should be set on a block usage rather than delegate.
     /// Both can be used
     func completionHandler(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void {
-        self.response = FIONetworkTaskResponse(response: response, data: data)
+        if let d = data {
+            if let r = response {
+                self.response = FIONetworkTaskResponse(response: r, data: d)
+            }
+        }
+        if let e = error {
+            self.response = FIONetworkTaskResponse(error: e)
+        }
     }
     
     //private func

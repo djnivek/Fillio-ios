@@ -69,21 +69,21 @@ private enum FIONetworkResponseBody {
             if let d = data {
                 if let json: AnyObject = NSJSONSerialization.JSONObjectWithData(d, options: NSJSONReadingOptions.AllowFragments, error: &serializeError) {
                     if let error = serializeError {
-                        return ["error":error.description]
+                        return FIONetworkResultObject(data: ["error":error.description])
                     }
-                    return json
+                    return FIONetworkResultObject(data: json)
                 }
             }
-            return ["error":"Cannot parse JSON"]
+            return FIONetworkResultObject(data: ["error":"Cannot parse JSON"])
         case .XML(let data) :
-            return ["error":"Cannot parse XML"]
+            return FIONetworkResultObject(data: ["error":"Cannot parse XML"])
         case .HTML(let data) :
             if let d = data {
                 if let string = NSString(data: d, encoding: NSUTF8StringEncoding) {
                     return string
                 }
             }
-            return ["error":"Cannot parse HTML"]
+            return FIONetworkResultObject(data: ["error":"Cannot parse HTML"])
         }
     }
     

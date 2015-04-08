@@ -16,7 +16,7 @@ enum FIONetworkResultObjectType: Int {
     case Null
 }
 
-public struct FIONetworkResultObject {
+public class FIONetworkResultObject {
     
     /// The attribute of the object
     private var _attribute: AnyObject
@@ -30,12 +30,12 @@ public struct FIONetworkResultObject {
         _type = .Null
     }
     
-    public init(data: AnyObject) {
+    public convenience init(data: AnyObject) {
         self.init()
         self.attribute = data
     }
     
-    init(errorWithMessage message: String, andCode code: Int) {
+    private convenience init(errorWithMessage message: String, andCode code: Int) {
         self.init()
         self.error = NSError(domain: "FillioNetworkDomain", code: code, userInfo: [NSLocalizedDescriptionKey: message])
     }

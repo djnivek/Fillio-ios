@@ -67,14 +67,9 @@ class FIOTestGetDataCustomClient: XCTestCase {
         
         task.blocks.Success {
             (let response) in
-            if let errors: NSArray = response["errors"] as? NSArray {
-                if let error: NSDictionary = errors[0] as? NSDictionary {
-                    if let code: NSNumber = error["code"] as? NSNumber {
-                        
-                    }
-                }
+            if let resp = response as? FIONetworkResultObject {
+                println(resp["errors"][0]["code"].numberValue)
             }
-            println("The response is '\(response)'")
             expectation.fulfill()
         }
         
