@@ -8,30 +8,67 @@
 
 import Foundation
 
-enum FIONetworkResultType {
-    case Image
-    case Object
+enum FIONetworkResultObjectType: Int {
+    case Number
+    case String
+    case Bool
+    case Array
+    case Dictionary
+    case Null
+    case Unknown
 }
 
-class FIONetworkResultObject {
+struct FIONetworkResultObject {
     
-    private var properties: [String:Any]?
+    /// The attribute of the object
+    private var _attribute: AnyObject
+    
+    private var _type: FIONetworkResultObjectType
 
+    init(data: AnyObject) {
+        self.attribute = data
+    }
+    
+    var attribute: AnyObject {
+        get {
+            return _attribute
+        }
+        set {
+            // set attribute with new value
+            _attribute = newValue
+            
+            // set type of attribute
+            switch newValue {
+            case let number as NSNumber:
+                if number.isBool {
+                    _type = .Bool
+                } else {
+                    _type = .Number
+                }
+            case let string as NSString:
+                _type = .String
+            case let null as NSNull:
+                _type = .Null
+            case let array as [AnyObject]:
+                _type = .Array
+            case let dictionary as [String : AnyObject]:
+                _type = .Dictionary
+            }
+        }
+    }
 }
 
 extension FIONetworkResultObject {
     
     subscript (key: Int) -> FIONetworkResultObject {
         get {
-            
+            return attribute[key] as NSDictionary
         }
     }
     
     subscript (key: String) -> AnyObject {
         get {
-            if let prop = properties {
-                return prop[key] as NSDictionary
-            }
+            return attribute[key] as NSDictionary
         }
     }
     
