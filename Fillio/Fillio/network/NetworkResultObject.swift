@@ -16,11 +16,23 @@ enum FIONetworkResultType {
 class FIONetworkResultObject {
     
     private var properties: [String:Any]?
+
+}
+
+extension FIONetworkResultObject {
     
-    subscript (path: AnyObject) -> AnyObject? {
+    subscript (key: Int) -> FIONetworkResultObject {
         get {
             
         }
     }
-
+    
+    subscript (key: String) -> AnyObject {
+        get {
+            if let prop = properties {
+                return prop[key] as NSDictionary
+            }
+        }
+    }
+    
 }
