@@ -9,24 +9,35 @@
 import Foundation
 
 enum FIONetworkResultObjectType: Int {
-    case Number
     case String
-    case Bool
+    case Number
     case Array
     case Dictionary
     case Null
-    case Unknown
 }
 
-struct FIONetworkResultObject {
+public struct FIONetworkResultObject {
     
     /// The attribute of the object
     private var _attribute: AnyObject
     
     private var _type: FIONetworkResultObjectType
+    
+    private var error: NSError?
 
-    init(data: AnyObject) {
+    init() {
+        _attribute = NSNull()
+        _type = .Null
+    }
+    
+    public init(data: AnyObject) {
+        self.init()
         self.attribute = data
+    }
+    
+    init(errorWithMessage message: String, andCode code: Int) {
+        self.init()
+        self.error = NSError(domain: "FillioNetworkDomain", code: code, userInfo: [NSLocalizedDescriptionKey: message])
     }
     
     var attribute: AnyObject {
@@ -40,11 +51,11 @@ struct FIONetworkResultObject {
             // set type of attribute
             switch newValue {
             case let number as NSNumber:
-                if number.isBool {
-                    _type = .Bool
-                } else {
-                    _type = .Number
-                }
+                /*if number.isBool {
+                _type = .Bool
+                } else {*/
+                _type = .Number
+                //}
             case let string as NSString:
                 _type = .String
             case let null as NSNull:
@@ -53,6 +64,9 @@ struct FIONetworkResultObject {
                 _type = .Array
             case let dictionary as [String : AnyObject]:
                 _type = .Dictionary
+            default:
+                _attribute = NSNull()
+                _type = .Null
             }
         }
     }
@@ -60,15 +74,63 @@ struct FIONetworkResultObject {
 
 extension FIONetworkResultObject {
     
-    subscript (key: Int) -> FIONetworkResultObject {
+    public var stringValue: String? {
+        return self.attribute as? String
+    }
+    
+    public var numberValue: NSNumber? {
+        return self.attribute as? NSNumber
+    }
+    
+    public var anyValue: AnyObject? {
+        return self.attribute
+    }
+    
+}
+
+extension FIONetworkResultObject: Printable {
+    
+    public var description: String {
+        if self._type == .String {
+            return self.attribute as String
+        }
+        if self._type == .Number {
+            let number = self.attribute as NSNumber
+            return number.stringValue
+        }
+        return ""
+    }
+    
+}
+
+extension FIONetworkResultObject {
+    
+    public subscript (index: Int) -> FIONetworkResultObject {
         get {
-            return attribute[key] as NSDictionary
+            
+            if let array = self.attribute as? [AnyObject] {
+                // test array index
+                if index < array.count {
+                    return FIONetworkResultObject(data: array[index])
+                }
+            }
+            
+            return FIONetworkResultObject(errorWithMessage: "Out of bounds at index \(index)", andCode: 500)
+            
         }
     }
     
-    subscript (key: String) -> AnyObject {
+    public subscript (key: String) -> FIONetworkResultObject {
         get {
-            return attribute[key] as NSDictionary
+            
+            if let dictionnary = self.attribute as? [String: AnyObject] {
+                // test array index
+                if let item: AnyObject = dictionnary[key] {
+                    return FIONetworkResultObject(data: item)
+                }
+            }
+            
+            return FIONetworkResultObject(errorWithMessage: "No entry found with key '\(key)'", andCode: 500)
         }
     }
     

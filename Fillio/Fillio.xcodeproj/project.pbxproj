@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E0401411AD59B7A0021E68F /* FIOTestsJSONParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0401401AD59B7A0021E68F /* FIOTestsJSONParsing.swift */; };
 		0E072F5B1AC083C5005653B1 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E072F5A1AC083C5005653B1 /* Network.swift */; };
 		0E07FE7A1ACEED1E00F938F4 /* NetworkResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E07FE791ACEED1E00F938F4 /* NetworkResultObject.swift */; };
 		0E1716D11ABC73D800AF0E40 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1716D01ABC73D800AF0E40 /* HTTPMethod.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E0401401AD59B7A0021E68F /* FIOTestsJSONParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIOTestsJSONParsing.swift; sourceTree = "<group>"; };
 		0E072F5A1AC083C5005653B1 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Network.swift; path = network/Network.swift; sourceTree = "<group>"; };
 		0E07FE791ACEED1E00F938F4 /* NetworkResultObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkResultObject.swift; path = network/NetworkResultObject.swift; sourceTree = "<group>"; };
 		0E1716D01ABC73D800AF0E40 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPMethod.swift; path = network/HTTPMethod.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				0E6581301AC97815000C5FD3 /* FillioTestSettingClient.swift */,
 				0E6581341ACB126A000C5FD3 /* FillioTestNetworkBlock.swift */,
 				0EBE8E061AADB6FA00148C8B /* Supporting Files */,
+				0E0401401AD59B7A0021E68F /* FIOTestsJSONParsing.swift */,
 			);
 			path = FillioTests;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E6581351ACB126A000C5FD3 /* FillioTestNetworkBlock.swift in Sources */,
+				0E0401411AD59B7A0021E68F /* FIOTestsJSONParsing.swift in Sources */,
 				0EBE8E091AADB6FA00148C8B /* FillioTests.swift in Sources */,
 				0E6581311AC97815000C5FD3 /* FillioTestSettingClient.swift in Sources */,
 				0E6581331AC9A423000C5FD3 /* FIOTestGetDataCustomClient.swift in Sources */,
