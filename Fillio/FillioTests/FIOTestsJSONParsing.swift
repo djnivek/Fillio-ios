@@ -58,5 +58,18 @@ class FIOTestsJSONParsing: XCTestCase {
         XCTAssertNotNil(test.anyValue, "The message is nil")
         println("this is the test : '\(test.anyValue)'")
     }
+    
+    func testParseResultArrayNoKey() {
+        let objParsed = FIONetworkResultObject(data: json)
+        let theCode = objParsed["error"]["theCode"]
+        
+        if let val: AnyObject = theCode.anyValue {
+            println(val)
+        }
+        
+        if let theError = theCode.error {
+            println(theError.description)
+        }
+    }
 
 }

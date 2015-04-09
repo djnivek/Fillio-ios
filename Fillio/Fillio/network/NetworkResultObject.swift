@@ -16,6 +16,8 @@ enum FIONetworkResultObjectType: Int {
     case Null
 }
 
+// MARK: Object -
+
 public class FIONetworkResultObject {
     
     /// The attribute of the object
@@ -23,7 +25,7 @@ public class FIONetworkResultObject {
     
     private var _type: FIONetworkResultObjectType
     
-    private var error: NSError?
+    private var _error: NSError?
 
     init() {
         _attribute = NSNull()
@@ -37,7 +39,11 @@ public class FIONetworkResultObject {
     
     private convenience init(errorWithMessage message: String, andCode code: Int) {
         self.init()
-        self.error = NSError(domain: "FillioNetworkDomain", code: code, userInfo: [NSLocalizedDescriptionKey: message])
+        self._error = NSError(domain: "FillioNetworkDomain", code: code, userInfo: [NSLocalizedDescriptionKey: message])
+    }
+    
+    public var error: NSError? {
+        return self._error
     }
     
     var attribute: AnyObject {
@@ -72,6 +78,8 @@ public class FIONetworkResultObject {
     }
 }
 
+// MARK: Get out value -
+
 extension FIONetworkResultObject {
     
     public var stringValue: String? {
@@ -88,20 +96,18 @@ extension FIONetworkResultObject {
     
 }
 
+// MARK: Printable Object -
+
 extension FIONetworkResultObject: Printable {
     
     public var description: String {
-        if self._type == .String {
-            return self.attribute as String
-        }
-        if self._type == .Number {
-            let number = self.attribute as NSNumber
-            return number.stringValue
-        }
-        return ""
+        return self.attribute.description as String
     }
     
 }
+
+
+// MARK: Subscript class -
 
 extension FIONetworkResultObject {
     
