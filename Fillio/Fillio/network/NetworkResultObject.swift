@@ -39,7 +39,7 @@ public class FIONetworkResultObject {
     
     private convenience init(errorWithMessage message: String, andCode code: Int) {
         self.init()
-        self._error = NSError(domain: "FillioNetworkDomain", code: code, userInfo: [NSLocalizedDescriptionKey: message])
+        self._error = NSError(domain: "FillioNetworkParsingDomain", code: code, userInfo: [NSLocalizedDescriptionKey: message])
     }
     
     public var error: NSError? {
