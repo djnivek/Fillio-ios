@@ -15,6 +15,7 @@
 		0E60E1821AD828160041B3D7 /* NetworkObjectAuto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E60E1811AD828160041B3D7 /* NetworkObjectAuto.swift */; };
 		0E60E1841AD828E10041B3D7 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E60E1831AD828E10041B3D7 /* Contact.swift */; };
 		0E60E1861AD829920041B3D7 /* FIOTestObjectAutoComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E60E1851AD829920041B3D7 /* FIOTestObjectAutoComplete.swift */; };
+		0E60E18A1AD9A1FA0041B3D7 /* Adresse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E60E1891AD9A1FA0041B3D7 /* Adresse.swift */; };
 		0E65812F1AC977E5000C5FD3 /* FillioTestCallMethodClientTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E65812E1AC977E5000C5FD3 /* FillioTestCallMethodClientTask.swift */; };
 		0E6581311AC97815000C5FD3 /* FillioTestSettingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6581301AC97815000C5FD3 /* FillioTestSettingClient.swift */; };
 		0E6581331AC9A423000C5FD3 /* FIOTestGetDataCustomClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6581321AC9A423000C5FD3 /* FIOTestGetDataCustomClient.swift */; };
@@ -56,6 +57,7 @@
 		0E60E1811AD828160041B3D7 /* NetworkObjectAuto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkObjectAuto.swift; path = network/NetworkObjectAuto.swift; sourceTree = "<group>"; };
 		0E60E1831AD828E10041B3D7 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		0E60E1851AD829920041B3D7 /* FIOTestObjectAutoComplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIOTestObjectAutoComplete.swift; sourceTree = "<group>"; };
+		0E60E1891AD9A1FA0041B3D7 /* Adresse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adresse.swift; sourceTree = "<group>"; };
 		0E65812E1AC977E5000C5FD3 /* FillioTestCallMethodClientTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillioTestCallMethodClientTask.swift; sourceTree = "<group>"; };
 		0E6581301AC97815000C5FD3 /* FillioTestSettingClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillioTestSettingClient.swift; sourceTree = "<group>"; };
 		0E6581321AC9A423000C5FD3 /* FIOTestGetDataCustomClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIOTestGetDataCustomClient.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				0E60E1831AD828E10041B3D7 /* Contact.swift */,
+				0E60E1891AD9A1FA0041B3D7 /* Adresse.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				0E6581351ACB126A000C5FD3 /* FillioTestNetworkBlock.swift in Sources */,
 				0E60E1861AD829920041B3D7 /* FIOTestObjectAutoComplete.swift in Sources */,
 				0E0401411AD59B7A0021E68F /* FIOTestsJSONParsing.swift in Sources */,
+				0E60E18A1AD9A1FA0041B3D7 /* Adresse.swift in Sources */,
 				0EBE8E091AADB6FA00148C8B /* FillioTests.swift in Sources */,
 				0E6581311AC97815000C5FD3 /* FillioTestSettingClient.swift in Sources */,
 				0E60E1841AD828E10041B3D7 /* Contact.swift in Sources */,

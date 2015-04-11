@@ -8,27 +8,57 @@
 
 import Foundation
 
-/*public protocol ObjectAutoProtocol {
-    func Map(correspondanceMapping: [String: String])
-}*/
+/// The protocol that provide mapping for object that wants to be populate
+public protocol FIOObjectManualMappedProtocol {
+    /// This method must return the map of your object
+    ///
+    /// Key must be the Data Key, value must be the Propertie name
+    ///
+    /// Example :
+    ///
+    /// 1. JSON -> ["tel":"01.12.32.34.45", "name": "Kevin"]
+    ///
+    /// 2. Object vars -> "phone", "name"
+    ///
+    /// Map must be like this ["tel":"phone", "name":"name"]
+    func Map() -> [String: String]
+}
 
-public typealias FIODictionary = [String: AnyObject]
+public typealias FIODictionary = [String: AnyObject]?
 
-public class FIONetworkObjectAuto: NSObject {//: ObjectAutoProtocol {
+public class FIONetworkObjectAuto: NSObject, FIOObjectManualMappedProtocol {
     
-    private var dictionary = FIODictionary()
+    /// The dictionary of the given data
+    private var dictionary: FIODictionary = FIODictionary()
     
-    public init(_ data: [String: AnyObject]) {
+    /// The populate
+    var autoPopulate = false
+    
+    /// The initializer of the object
+    ///
+    /// It provide an autopopulation of the properties values
+    ///
+    /// :param: data Dictionary of values
+    public convenience init(_ data: FIODictionary) {
+        self.init(data, autoMapping: true)
+    }
+    
+    /// The initializer of the object
+    ///
+    /// :param: data Dictionary of values
+    /// :param: autoMapping Boolean that tells if autoMapping must be used
+    public init(_ data: FIODictionary, autoMapping: Bool) {
         super.init()
         dictionary = data
+        autoPopulate = autoMapping
         populate()
     }
     
-    private func populate() {
-        for key in dictionary.keys {
-            self.setValue(dictionary[key], forKey: key)
-        }
-    }
+}
+
+// MARK: Auto Description
+
+extension FIONetworkObjectAuto {
     
     override public var description: String {
         get {
@@ -38,6 +68,65 @@ public class FIONetworkObjectAuto: NSObject {//: ObjectAutoProtocol {
             
             // put the object into dictionary and print it
             return ""
+        }
+    }
+    
+    /// The object's properties
+    private var properties: [String: Any]? {
+        /// The properties of the object, at all !
+        let allProps = reflect(self)
+        /// The properties filtered
+        var filteredProps = [String: Any]()
+        for var i = 0; i < allProps.count; i++ {
+            // put values into array of filtered values
+            if allProps[i].0 != "super" {
+                filteredProps[allProps[i].0] = allProps[i].1.value
+            }
+        }
+        return filteredProps
+    }
+    
+}
+
+// MARK: Auto Mapping
+
+extension FIONetworkObjectAuto {
+    
+    /// The method that populate the object using dictionary values
+    ///
+    /// This method is called if `autoPopulate` is actived
+    private func populate() {
+        if autoPopulate {
+            if let dict = dictionary {
+                for key in dict.keys {
+                    self.setValue(dict[key], forKey: key)
+                }
+            }
+        }
+        else {
+            manualMapping()
+        }
+    }
+    
+}
+
+// MARK: Manual Mapping
+
+extension FIONetworkObjectAuto {
+    
+    public func Map() -> [String : String] {
+        fatalError("Map must be overriden")
+    }
+    
+    /// The method that populate the object with the map provided by the class
+    private func manualMapping() {
+        let map = self.Map()
+        if let dict = dictionary {
+            for key in dict.keys {
+                if let mapK = map[key] {
+                    self.setValue(dict[key], forKey: mapK)
+                }
+            }
         }
     }
     

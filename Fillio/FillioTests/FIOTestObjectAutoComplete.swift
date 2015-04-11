@@ -21,7 +21,12 @@ class FIOTestObjectAutoComplete: XCTestCase {
         let lname = "MACHADO"
         let phone = "06.19.35.37.67"
         
-        json = ["age": age, "firstname": fname, "lastname": lname, "phone": phone]
+        let rue = "rue saint fiacre"
+        let num = 11
+        
+        let adresse = ["number": num, "street": rue]
+        
+        json = ["age": age, "prenom": fname, "nom": lname, "phone": phone, "adresse": adresse]
         
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
