@@ -13,21 +13,5 @@ class Adresse: FIONetworkObjectAuto {
     
     var number: NSNumber?
     var street: String?
-    
-    init(_ data: FIODictionary) {
-        super.init(data, autoMapping: true)
-    }
-    
-    override var description: String {
-        get {
-            if let s = street {
-                if let n = number {
-                    return "\(n) \(s)"
-                }
-                return "\(s)"
-            }
-            return "Adresse non renseignée"
-        }
-    }
 
 }

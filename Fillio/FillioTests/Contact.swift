@@ -30,25 +30,4 @@ class Contact: FIONetworkObjectAuto {
         map["phone"] = "phone"
         return map
     }
-    
-    override var description: String {
-        get {
-            if let f = firstname {
-                if let l = lastname {
-                    if let p = phone {
-                        if let a = age {
-                            if let ad = adresse {
-                                return "\(f) \(l), \(a)ans, joignable au \(p), habitant au \(ad)"
-                            }
-                            return "\(f) \(l), \(a)ans, joignable au \(p)"
-                        }
-                        return "\(f) \(l), joignable au \(p)"
-                    }
-                    return "\(f) \(l)"
-                }
-                return "\(f)"
-            }
-            return "Fiche de contact vide"
-        }
-    }
 }

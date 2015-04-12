@@ -31,8 +31,8 @@ public class FIONetworkObjectAuto: NSObject, FIOObjectManualMappedProtocol {
     /// The dictionary of the given data
     private var dictionary: FIODictionary = FIODictionary()
     
-    /// The populate
-    var autoPopulate = false
+    /// Boolean that tells if the population must be doing automatically with auto mapping. (Set true by default)
+    private var autoPopulate = true
     
     /// The initializer of the object
     ///
@@ -62,12 +62,15 @@ extension FIONetworkObjectAuto {
     
     override public var description: String {
         get {
-            // get all properties
             
-            // OR
+            // get all properties and print them
+            if let props = properties {
+                return props.description
+            }
             
-            // put the object into dictionary and print it
-            return ""
+            // else return an error string
+            var descriptionReturn = "Error during `description` generation"
+            return descriptionReturn
         }
     }
     
