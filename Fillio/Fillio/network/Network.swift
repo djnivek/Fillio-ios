@@ -28,7 +28,7 @@ public class FIONetwork {
     }
     
     /// This method create/get a client with a root url
-    public class func clientWithRootUrl(rootUrl: NSString) -> FIONetworkClient {
+    public class func clientWithRootUrl(rootUrl: String) -> FIONetworkClient {
         if let client = FIONetwork.instance.clients[rootUrl] {
             return client
         } else {

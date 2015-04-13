@@ -28,7 +28,7 @@ public class FIOCron {
     }
     
     /// This method create/get a crontab instance
-    public class func crontTabWithID(id: NSString) -> FIOCronTab {
+    public class func crontTabWithID(id: String) -> FIOCronTab {
         if let cron = FIOCron.instance.cronList[id] {
             return cron
         } else {

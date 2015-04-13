@@ -17,7 +17,129 @@ public protocol FIONetworkTaskDelegate {
 }
 
 public class FIONetworkTask {
+    
+    // MARK: - Properties
+    
+    // MARK: Params
+    
+    /// The params given for task
+    //private var param: [String: AnyObject]?
+    
+    // MARK: Others
+    
+    /// The HTTP method of the task
+    var method: HTTPMethod = .GET(nil)
+    
+    /// The url for the task
+    public let url: String
+    
+    /// The session task associated to self
+    var sessionTask: NSURLSessionTask?
+    
+    /// The blocks struct that tells callback on completion
+    public var blocks: CompletionBlock
+    
+    var delegate: FIONetworkTaskDelegate?
+    
+    // MARK: Computed properties
+    
+    public var response: FIONetworkTaskResponse? {
+        didSet {
+            
+            if let theDelegate = self.delegate {
+                if let resp = response {
+                    if resp.isFailed {
+                        theDelegate.Task(self, didFailedWithError: resp.error!)
+                    } else {
+                        theDelegate.Task(self, didReceiveResponse: resp.data)
+                    }
+                }
+            }
+        }
+    }
+    
+    /// The computed request of the task
+    ///
+    /// This request adds automatically `HTTPMethod` and `Body`
+    ///
+    /// - GET Methods contains url appended with params
+    /// - POST Methods contains body with params encoded to JSON
+    var request: NSMutableURLRequest? {
+        if let theURL = NSURL(string: self.url) {
+            let req = NSMutableURLRequest(URL: theURL)
+            switch method {
+            case .GET(let dictionary):
+                req.HTTPMethod = "GET"
+                if let dict = dictionary {
+                    var urlMutable = self.url
+                    let string = RequestParams.RequestParamFromDictionary(dict)
+                    urlMutable.appendUrl(string)
+                    req.URL = NSURL(string: urlMutable)
+                }
+            case .POST(let dictionary):
+                req.HTTPMethod = "POST"
+                if let dict = dictionary {
+                    req.HTTPBody = NSJSONSerialization.dataWithJSONObject(dict, options: NSJSONWritingOptions.allZeros, error: nil)
+                }
+            case .PUT:
+                req.HTTPMethod = "PUT"
+            case .DELETE:
+                req.HTTPMethod = "DELETE"
+            default:
+                req.HTTPMethod = "GET"
+            }
+            return req
+        }
+        return nil
+    }
+    
+    // MARK: Functions
+    
+    /// The completion handler called when the load request is complete (session.dataTaskWithRequest).
+    ///
+    /// Should be set on a block usage rather than delegate.
+    /// Both can be used
+    func completionHandler(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void {
+        if let d = data {
+            if let r = response {
+                self.response = FIONetworkTaskResponse(response: r, data: d)
+            }
+        }
+        if let e = error {
+            self.response = FIONetworkTaskResponse(error: e)
+        }
+    }
+    
+    init(method: HTTPMethod?, url: String) {
+        if let m = method {
+            self.method = m
+        }
+        self.url = url
+        self.blocks = CompletionBlock(nil, nil, nil)
+    }
+}
 
+// MARK: - State
+
+extension FIONetworkTask {
+    
+    public var progress: NSProgress? {
+        return nil
+    }
+    
+    // MARK: - Controlling the Task State
+    
+    public func resume() {
+        if let task = sessionTask {
+            task.resume()
+        }
+    }
+}
+
+// MARK: - Completion Handler
+
+extension FIONetworkTask {
+    
     public typealias successHandlerParam = (AnyObject)
     public typealias completeHandlerParam = (AnyObject?, NSError?)
     
@@ -53,13 +175,13 @@ public class FIONetworkTask {
         var completionFailBlock: ((NSError?) -> ())?
         
         /**
-            Function that call all completionBlocks set
+        Function that call all completionBlocks set
         
-            :discuss: We can set multiple completionBlock so we need to call them with only one function
-
-            :param: response The optional response
-            :param: data The optional data
-            :param: error The optional error
+        :discuss: We can set multiple completionBlock so we need to call them with only one function
+        
+        :param: response The optional response
+        :param: data The optional data
+        :param: error The optional error
         */
         public mutating func AllCompletionBlock(response: AnyObject?,_ error: NSError?) {
             for block in completionBlocks {
@@ -69,9 +191,9 @@ public class FIONetworkTask {
         
         /**
         
-            The function with completionBlock that is called when success or fail block has been called
+        The function with completionBlock that is called when success or fail block has been called
         
-            :param: block A handler that the class can call
+        :param: block A handler that the class can call
         */
         public mutating func Complete(block: (completeHandlerParam)->()) {
             self.completionBlock = block
@@ -79,9 +201,9 @@ public class FIONetworkTask {
         
         /**
         
-            The function with completionBlock that is called when the task failed
+        The function with completionBlock that is called when the task failed
         
-            :param: block A handler that the class can call
+        :param: block A handler that the class can call
         */
         public mutating func Fail(block: (NSError?)->()) {
             self.completionFailBlock = block
@@ -89,9 +211,9 @@ public class FIONetworkTask {
         
         /**
         
-            The function with completionBlock that is called when the task succeed
+        The function with completionBlock that is called when the task succeed
         
-            :param: block A handler that the class can call
+        :param: block A handler that the class can call
         */
         public mutating func Success(block: (successHandlerParam)->()) {
             self.completionSuccessBlock = block
@@ -101,78 +223,26 @@ public class FIONetworkTask {
             
         }
     }
-    
-    /// The params given for task
-    let param: String
-    
-    /// The url for the task
-    public let url: String
-    
-    /// The session task associated to self
-    var sessionTask: NSURLSessionTask?
-    
-    /// The blocks struct that tells callback on completion
-    public var blocks: CompletionBlock
-    
-    var delegate: FIONetworkTaskDelegate?
-    
-    public var response: FIONetworkTaskResponse? {
-        didSet {
+}
+
+// MARK: - RequestParams
+
+class RequestParams {
+    class func RequestParamFromDictionary(dictionary: [String: AnyObject]) -> String {
+        
+        var string: String = "?"
+        var flagCharToAdd = false
+        for key in dictionary.keys {
+            if flagCharToAdd {
+                string += "&"
+            }
+            flagCharToAdd = true
+            if let val: AnyObject = dictionary[key] {
+                string += "\(key)=\(val)"
+            }
             
-            if let theDelegate = self.delegate {
-                if let resp = response {
-                    if resp.isFailed {
-                        theDelegate.Task(self, didFailedWithError: resp.error!)
-                    } else {
-                        theDelegate.Task(self, didReceiveResponse: resp.data)
-                    }
-                }
-            }
         }
-    }
-    
-    /// The completion handler called when the load request is complete (session.dataTaskWithRequest).
-    ///
-    /// Should be set on a block usage rather than delegate.
-    /// Both can be used
-    func completionHandler(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void {
-        if let d = data {
-            if let r = response {
-                self.response = FIONetworkTaskResponse(response: r, data: d)
-            }
-        }
-        if let e = error {
-            self.response = FIONetworkTaskResponse(error: e)
-        }
-    }
-    
-    //private func
-    
-    /// The computed request of the task
-    var request: NSURLRequest? {
-        if let theURL = NSURL(string: self.url) {
-            return NSURLRequest(URL: theURL)
-        }
-        return nil
-    }
-    
-    init(param: String, url: String) {
-        self.param = param
-        self.url = url
-        self.blocks = CompletionBlock(nil, nil, nil)
-    }
-    
-    // MARK: - Block State
-    
-    public var progress: NSProgress? {
-        return nil
-    }
-    
-    // MARK: - Controlling the Task State
-    
-    public func resume() {
-        if let task = sessionTask {
-            task.resume()
-        }
+        
+        return string
     }
 }

@@ -54,7 +54,7 @@ public class FIONetworkClientConfiguration {
         // Accept-Language HTTP Header; see http://tools.ietf.org/html/rfc7231#section-5.3.5
         let acceptLanguage: String = {
             var components: [String] = []
-            for (index, languageCode) in enumerate(NSLocale.preferredLanguages() as [String]) {
+            for (index, languageCode) in enumerate(NSLocale.preferredLanguages() as! [String]) {
                 let q = 1.0 - (Double(index) * 0.1)
                 components.append("\(languageCode);q=\(q)")
                 if q <= 0.5 {
@@ -76,7 +76,7 @@ public class FIONetworkClientConfiguration {
                 var mutableUserAgent = NSMutableString(string: "\(executable)/\(bundle) (\(version); OS \(os))") as CFMutableString
                 let transform = NSString(string: "Any-Latin; Latin-ASCII; [:^ASCII:] Remove") as CFString
                 if CFStringTransform(mutableUserAgent, nil, transform, 0) == 1 {
-                    return mutableUserAgent as NSString
+                    return mutableUserAgent as String
                 }
             }
             return "Fillio"
@@ -94,7 +94,7 @@ public class FIONetworkClientConfiguration {
         
         switch sessionType {
         case .BackgroundSession(let identifier):
-            configuration = NSURLSessionConfiguration.backgroundSessionConfiguration(identifier)
+            configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier(identifier)
         case .EphemeralSession:
             configuration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         case .DefaultSession:

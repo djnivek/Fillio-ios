@@ -78,7 +78,12 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
             completionFail(error)
         }
         
-        // call delegate
+        //  call delegate **************** needed ***************
+        //  *                                                   *
+        //  ***************** no delegate yet ! *****************
+        //  ***************** no delegate yet ! *****************
+        //  *                                                   *
+        //  ************* needed ****************** call delegate
     }
     
     func Task(task: FIONetworkTask, didReceiveResponse response: AnyObject) {

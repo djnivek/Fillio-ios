@@ -37,7 +37,7 @@ class FillioTestCallMethodClientTask: XCTestCase {
     func testGetDataOutsideHandler() {
         var client = FIONetwork.defaultClient
         var expectation = self.expectationWithDescription("Request session")
-        var task = client["http://www.google.fr"]("", nil)
+        var task = client["http://www.google.fr"](nil, nil)
         task.blocks.Complete {
             expectation.fulfill()
             println("Response ->\($0)")
@@ -50,7 +50,7 @@ class FillioTestCallMethodClientTask: XCTestCase {
     func testGetDataInsideHandler() {
         var client = FIONetwork.defaultClient
         var expectation = self.expectationWithDescription("Google Request")
-        var task = client["http://www.google.fr"]("") {
+        var task = client["http://www.google.fr"](nil) {
             expectation.fulfill()
             println("Response ->\($0)")
             println("Error -> \($1)")
@@ -63,7 +63,7 @@ class FillioTestCallMethodClientTask: XCTestCase {
         var client = FIONetwork.defaultClient
         client.config.autostartTask = true
         var expectation = self.expectationWithDescription("Google Request")
-        var task = client["http://www.google.fr"]("") {
+        var task = client["http://www.google.fr"](nil) {
             expectation.fulfill()
             println("Response ->\($0)")
             println("Error -> \($1)")

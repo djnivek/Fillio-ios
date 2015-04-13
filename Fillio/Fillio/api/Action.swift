@@ -13,7 +13,7 @@ class FIOApiAction {
     let action: String
     let controller: String
     let module: String
-    let library: String?
+    var library: String?
     
     var output: NSMutableDictionary
     

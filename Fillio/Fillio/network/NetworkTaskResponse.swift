@@ -10,11 +10,11 @@ import Foundation
 
 public class FIONetworkTaskResponse {
     
-    private let _response: NSURLResponse?
+    private var _response: NSURLResponse?
     
-    private let _data: NSData?
+    private var _data: NSData?
     
-    let error: NSError?
+    var error: NSError?
     
     init(response: NSURLResponse, data: NSData) {
         self._response = response

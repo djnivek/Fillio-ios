@@ -39,7 +39,7 @@ class FIOTestGetDataCustomClient: XCTestCase {
         api.config.autostartTask = true
         api.config.sessionType = FIONetworkHTTPSessionType.EphemeralSession
         var expectation = self.expectationWithDescription("Api Request")
-        var task = api["class/user/1"]("") {
+        var task = api["class/user/1"](nil) {
             (let resp, let error) in
             println("response -> \(resp)")
             println("error -> \(error)")
@@ -59,7 +59,7 @@ class FIOTestGetDataCustomClient: XCTestCase {
         api.config.autostartTask = true
         api.config.sessionType = FIONetworkHTTPSessionType.EphemeralSession
         var expectation = self.expectationWithDescription("Api Request")
-        var task = api["search/tweets.json"]("") {
+        var task = api["search/tweets.json"](nil) {
             (let resp, let error) in
             println("response -> \(resp)")
             println("error -> \(error)")

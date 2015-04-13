@@ -12,6 +12,7 @@
 		0E07FE7A1ACEED1E00F938F4 /* NetworkResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E07FE791ACEED1E00F938F4 /* NetworkResultObject.swift */; };
 		0E1716D11ABC73D800AF0E40 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1716D01ABC73D800AF0E40 /* HTTPMethod.swift */; };
 		0E1716D31ABC73F500AF0E40 /* NetworkTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1716D21ABC73F500AF0E40 /* NetworkTaskResponse.swift */; };
+		0E380B7D1ADAD27F00F87154 /* FIOTestHTTPMethodInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E380B7C1ADAD27F00F87154 /* FIOTestHTTPMethodInRequest.swift */; };
 		0E60E1821AD828160041B3D7 /* NetworkObjectAuto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E60E1811AD828160041B3D7 /* NetworkObjectAuto.swift */; };
 		0E60E1841AD828E10041B3D7 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E60E1831AD828E10041B3D7 /* Contact.swift */; };
 		0E60E1861AD829920041B3D7 /* FIOTestObjectAutoComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E60E1851AD829920041B3D7 /* FIOTestObjectAutoComplete.swift */; };
@@ -54,6 +55,7 @@
 		0E07FE791ACEED1E00F938F4 /* NetworkResultObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkResultObject.swift; path = network/NetworkResultObject.swift; sourceTree = "<group>"; };
 		0E1716D01ABC73D800AF0E40 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPMethod.swift; path = network/HTTPMethod.swift; sourceTree = "<group>"; };
 		0E1716D21ABC73F500AF0E40 /* NetworkTaskResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkTaskResponse.swift; path = network/NetworkTaskResponse.swift; sourceTree = "<group>"; };
+		0E380B7C1ADAD27F00F87154 /* FIOTestHTTPMethodInRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIOTestHTTPMethodInRequest.swift; sourceTree = "<group>"; };
 		0E60E1811AD828160041B3D7 /* NetworkObjectAuto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkObjectAuto.swift; path = network/NetworkObjectAuto.swift; sourceTree = "<group>"; };
 		0E60E1831AD828E10041B3D7 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		0E60E1851AD829920041B3D7 /* FIOTestObjectAutoComplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIOTestObjectAutoComplete.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				0E60E1881AD834FC0041B3D7 /* JSON */,
+				0E380B7C1ADAD27F00F87154 /* FIOTestHTTPMethodInRequest.swift */,
 				0EBE8E081AADB6FA00148C8B /* FillioTests.swift */,
 				0E65812E1AC977E5000C5FD3 /* FillioTestCallMethodClientTask.swift */,
 				0E6581321AC9A423000C5FD3 /* FIOTestGetDataCustomClient.swift */,
@@ -372,6 +375,7 @@
 				0E60E1861AD829920041B3D7 /* FIOTestObjectAutoComplete.swift in Sources */,
 				0E0401411AD59B7A0021E68F /* FIOTestsJSONParsing.swift in Sources */,
 				0E60E18A1AD9A1FA0041B3D7 /* Adresse.swift in Sources */,
+				0E380B7D1ADAD27F00F87154 /* FIOTestHTTPMethodInRequest.swift in Sources */,
 				0EBE8E091AADB6FA00148C8B /* FillioTests.swift in Sources */,
 				0E6581311AC97815000C5FD3 /* FillioTestSettingClient.swift in Sources */,
 				0E60E1841AD828E10041B3D7 /* Contact.swift in Sources */,

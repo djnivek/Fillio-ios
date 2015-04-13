@@ -9,8 +9,8 @@
 import Foundation
 
 public enum HTTPMethod {
-    case POST
-    case PUT
-    case DELETE
-    case GET
+    case GET([String: AnyObject]?)
+    case POST([String: AnyObject]?)
+    case PUT()
+    case DELETE()
 }

@@ -136,12 +136,12 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate {
     }
     
     public typealias completionWithTuples = ((AnyObject?, NSError?)-> Void)
-    public typealias functionSetting = (String, completionWithTuples?) -> FIONetworkTask
+    public typealias functionSetting = (HTTPMethod?, completionWithTuples?) -> FIONetworkTask
     
     public subscript (path: String) -> functionSetting {
         get {
             var res: functionSetting = {
-                (param: String, completion: completionWithTuples?) in
+                (method: HTTPMethod?, completion: completionWithTuples?) in
                 
                 // create task with elements
                 var theFullUrl = ""
@@ -162,7 +162,7 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate {
                     theFullUrl += path
                 }
                 
-                var task = FIONetworkTask(param: param, url: theFullUrl)
+                var task = FIONetworkTask(method: method, url: theFullUrl)
                 
                 if let block = completion {
                     task.blocks.completionBlock = block
