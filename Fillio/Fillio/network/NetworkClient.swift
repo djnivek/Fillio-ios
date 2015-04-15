@@ -9,7 +9,6 @@
 import UIKit
 
 extension String {
-    
     /**
         The method append `x` to `self` by adding backslash beetween them if needed
     
@@ -123,6 +122,30 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate {
         
         /// The empty initializer
         init() {}
+        
+        func absoluteUrlWithPath(path: String) -> String {
+            // create task with elements
+            var theFullUrl = ""
+            if self.isValid {
+                if let scheme = self.scheme {
+                    if let host = self.host {
+                        theFullUrl = scheme+"://"+host
+                        if let port = self.port {
+                            theFullUrl += ":"+port
+                        }
+                        if let rootPath = self.path {
+                            if rootPath != "/" {
+                                theFullUrl += "/"+rootPath
+                            }
+                            theFullUrl.appendUrl(path)
+                        }
+                    }
+                }
+            } else {
+                theFullUrl += path
+            }
+            return theFullUrl
+        }
     }
     
     /// The optional client url
@@ -148,25 +171,24 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate {
                 (method: HTTPMethod?, completion: completionWithTuples?) in
                 
                 // create task with elements
-                var theFullUrl = ""
-                if let valid = self.url?.isValid {
-                    if let scheme = self.url?.scheme {
-                        if let host = self.url?.host {
-                            theFullUrl = scheme+"://"+host
-                            if let port = self.url?.port {
-                                theFullUrl += ":"+port
-                            }
-                            if let rootPath = self.url?.path {
-                                if rootPath != "/" {
-                                    theFullUrl += "/"+rootPath
-                                }
-                                theFullUrl.appendUrl(path)
-                            }
-                        }
-                    }
-                } else {
-                    theFullUrl += path
-                }
+                var theFullUrl = self.url?.absoluteUrlWithPath(path) ?? path
+                
+//                if let m = method {
+//                    switch m {
+//                    case .GET(let dict):
+//                        self.GET(dict, completionHandler: completion)
+//                    case .POST(let dict):
+//                        self.POST(dict, completionHandler: completion)
+//                    case .PUT:
+//                        fatalError("PUT not available")
+//                    case .DELETE:
+//                        fatalError("DELETE not available")
+//                    default:
+//                        self.GET(nil, completionHandler: completion)
+//                    }
+//                }
+                
+                
                 
                 var task = FIONetworkTask(method: method, url: theFullUrl)
                 
@@ -178,6 +200,7 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate {
                 self.queueTask(task)
                 
                 return task
+
             }
             return res
         }
@@ -202,6 +225,10 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate {
         taskManager.addTaskToQueue(task)
     }
     
+}
+
+extension FIONetworkClient {
+    
     public func downloadImage(url: String) -> UIImage {
         let url = NSURL(string: url)
         let data = NSData(contentsOfURL: url!)
@@ -209,4 +236,49 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate {
         return image!
     }
     
+//    private func GET(params: [String: AnyObject]?, completionHandler: completionWithTuples?) -> functionSetting {
+//        // create task with elements
+//        var theFullUrl = ""
+//        if let valid = self.url?.isValid {
+//            if let scheme = self.url?.scheme {
+//                if let host = self.url?.host {
+//                    theFullUrl = scheme+"://"+host
+//                    if let port = self.url?.port {
+//                        theFullUrl += ":"+port
+//                    }
+//                    if let rootPath = self.url?.path {
+//                        if rootPath != "/" {
+//                            theFullUrl += "/"+rootPath
+//                        }
+//                        theFullUrl.appendUrl(path)
+//                    }
+//                }
+//            }
+//        } else {
+//            theFullUrl += path
+//        }
+//        
+//        var task = FIONetworkTask(method: method, url: theFullUrl)
+//        
+//        if let block = completion {
+//            task.blocks.completionBlock = block
+//        }
+//        
+//        // insert task into the taskManager
+//        self.queueTask(task)
+//        
+//        return task
+//    }
+//    
+//    private func POST(params: [String: AnyObject]?, completionHandler: completionWithTuples?) {
+//        
+//    }
+//    
+//    private func UPLOAD(uploadData data: NSData, params: [String: AnyObject]?, completionHandler: completionWithTuples?) {
+//        
+//    }
+//    
+//    private func DOWNLOAD(completionHandler: completionWithTuples?) {
+//        
+//    }
 }

@@ -28,7 +28,6 @@
 		0E7D680C1AAE11C800BDB176 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D680A1AAE11C800BDB176 /* Object.swift */; };
 		0E7D680F1AAE124300BDB176 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D680D1AAE124300BDB176 /* NetworkClient.swift */; };
 		0E7D68151AAE404900BDB176 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D68141AAE404900BDB176 /* Action.swift */; };
-		0E973EB11ABA28F40021EF03 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E973EB01ABA28F40021EF03 /* HTTPRequest.swift */; };
 		0E978ED21ACEB1DF00001673 /* FIOCron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E978ED11ACEB1DF00001673 /* FIOCron.swift */; };
 		0E978ED41ACEB24700001673 /* FIOCronManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E978ED31ACEB24700001673 /* FIOCronManager.swift */; };
 		0E978ED61ACEB25A00001673 /* FIOCronJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E978ED51ACEB25A00001673 /* FIOCronJob.swift */; };
@@ -71,7 +70,6 @@
 		0E7D680A1AAE11C800BDB176 /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Object.swift; path = api/Object.swift; sourceTree = "<group>"; };
 		0E7D680D1AAE124300BDB176 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkClient.swift; path = network/NetworkClient.swift; sourceTree = "<group>"; };
 		0E7D68141AAE404900BDB176 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Action.swift; path = api/Action.swift; sourceTree = "<group>"; };
-		0E973EB01ABA28F40021EF03 /* HTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPRequest.swift; path = network/HTTPRequest.swift; sourceTree = "<group>"; };
 		0E978ED11ACEB1DF00001673 /* FIOCron.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIOCron.swift; path = cron/FIOCron.swift; sourceTree = "<group>"; };
 		0E978ED31ACEB24700001673 /* FIOCronManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIOCronManager.swift; path = cron/FIOCronManager.swift; sourceTree = "<group>"; };
 		0E978ED51ACEB25A00001673 /* FIOCronJob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIOCronJob.swift; path = cron/FIOCronJob.swift; sourceTree = "<group>"; };
@@ -220,7 +218,6 @@
 				0E679A7F1AC2EBE8007A1E77 /* NetworkClientConfiguration.swift */,
 				0E072F5A1AC083C5005653B1 /* Network.swift */,
 				0E7D680D1AAE124300BDB176 /* NetworkClient.swift */,
-				0E973EB01ABA28F40021EF03 /* HTTPRequest.swift */,
 				0E1716D01ABC73D800AF0E40 /* HTTPMethod.swift */,
 				0E1716D21ABC73F500AF0E40 /* NetworkTaskResponse.swift */,
 				0EAED9271AC2958B0090ECB7 /* NetworkTaskManager.swift */,
@@ -358,7 +355,6 @@
 				0E679A821AC339CC007A1E77 /* NetworkTask.swift in Sources */,
 				0E1716D31ABC73F500AF0E40 /* NetworkTaskResponse.swift in Sources */,
 				0E1716D11ABC73D800AF0E40 /* HTTPMethod.swift in Sources */,
-				0E973EB11ABA28F40021EF03 /* HTTPRequest.swift in Sources */,
 				0E60E1821AD828160041B3D7 /* NetworkObjectAuto.swift in Sources */,
 				0E072F5B1AC083C5005653B1 /* Network.swift in Sources */,
 				0E978ED41ACEB24700001673 /* FIOCronManager.swift in Sources */,

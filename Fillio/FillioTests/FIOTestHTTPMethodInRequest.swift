@@ -51,5 +51,26 @@ class FIOTestHTTPMethodInRequest: XCTestCase {
         
         waitForExpectationsWithTimeout(5.0, handler: nil)
     }
+    
+    func testGETRequest() {
+        
+        // regarder pour le problème de double "//" dans l'uRL http://localhost:9999// <--- ???
+        
+        var myClient = FIONetwork.clientWithRootUrl("http://localhost:9999/")
+        let params = ["action":"test", "username":"Kevin", "id": 12.2]
+        
+        var expectation = self.expectationWithDescription("Test POST Params")
+        
+        var task = myClient["xctest/network"](HTTPMethod.POST(params)) {
+            (let response, let error) in
+            println("The response is '\(response)'")
+            println("The response is '\(error)'")
+            expectation.fulfill()
+        }
+        
+        task.resume()
+        
+        waitForExpectationsWithTimeout(5.0, handler: nil)
+    }
 
 }

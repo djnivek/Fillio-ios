@@ -79,7 +79,18 @@ public class FIONetworkTask {
             case .POST(let dictionary):
                 req.HTTPMethod = "POST"
                 if let dict = dictionary {
-                    req.HTTPBody = NSJSONSerialization.dataWithJSONObject(dict, options: NSJSONWritingOptions.allZeros, error: nil)
+                    var err: NSError?
+                    req.HTTPBody = NSJSONSerialization.dataWithJSONObject(dict, options: NSJSONWritingOptions.allZeros, error: &err)
+                    req.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                    req.addValue("application/json", forHTTPHeaderField: "Accept")
+                    //var boundary = "Boundary+\(arc4random())\(arc4random())"
+                    /*if parameters != nil {
+                        request.HTTPBody = dataFromParameters(parameters!,boundary: boundary)
+                    }*/
+                    /*if request.valueForHTTPHeaderField(contentTypeKey) == nil {
+                        request.setValue("multipart/form-data; boundary=\(boundary)",
+                            forHTTPHeaderField:contentTypeKey)
+                    }*/
                 }
             case .PUT:
                 req.HTTPMethod = "PUT"
