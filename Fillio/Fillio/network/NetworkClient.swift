@@ -18,17 +18,21 @@ extension String {
     */
     mutating func appendUrl(x: String) {
         var imX = x
+        // delete prefix '/' if `x` have it
         if imX.hasPrefix("/") {
             let range = imX.rangeOfString("/", options: NSStringCompareOptions.LiteralSearch, range: nil, locale: nil)
             if let t = range {
                 imX.removeRange(t)
             }
         }
+        
+        // add '/' if needed
         if self.hasSuffix("/") {
             self.extend(imX)
         } else {
             self.extend("/\(imX)")
         }
+        println(self)
     }
 }
 
@@ -153,7 +157,9 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate {
                                 theFullUrl += ":"+port
                             }
                             if let rootPath = self.url?.path {
-                                theFullUrl += "/"+rootPath
+                                if rootPath != "/" {
+                                    theFullUrl += "/"+rootPath
+                                }
                                 theFullUrl.appendUrl(path)
                             }
                         }
