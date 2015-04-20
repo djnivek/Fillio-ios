@@ -236,49 +236,49 @@ extension FIONetworkClient {
         return image!
     }
     
-//    private func GET(params: [String: AnyObject]?, completionHandler: completionWithTuples?) -> functionSetting {
-//        // create task with elements
-//        var theFullUrl = ""
-//        if let valid = self.url?.isValid {
-//            if let scheme = self.url?.scheme {
-//                if let host = self.url?.host {
-//                    theFullUrl = scheme+"://"+host
-//                    if let port = self.url?.port {
-//                        theFullUrl += ":"+port
-//                    }
-//                    if let rootPath = self.url?.path {
-//                        if rootPath != "/" {
-//                            theFullUrl += "/"+rootPath
-//                        }
-//                        theFullUrl.appendUrl(path)
-//                    }
-//                }
-//            }
-//        } else {
-//            theFullUrl += path
-//        }
-//        
-//        var task = FIONetworkTask(method: method, url: theFullUrl)
-//        
-//        if let block = completion {
-//            task.blocks.completionBlock = block
-//        }
-//        
-//        // insert task into the taskManager
-//        self.queueTask(task)
-//        
-//        return task
-//    }
-//    
-//    private func POST(params: [String: AnyObject]?, completionHandler: completionWithTuples?) {
-//        
-//    }
-//    
-//    private func UPLOAD(uploadData data: NSData, params: [String: AnyObject]?, completionHandler: completionWithTuples?) {
-//        
-//    }
-//    
-//    private func DOWNLOAD(completionHandler: completionWithTuples?) {
-//        
-//    }
+    private func get(params: [String: AnyObject]?, path: String?) -> FIONetworkTask {
+        
+        var url: String = ""
+        if let p = path {
+            url = self.url?.absoluteUrlWithPath(p) ?? p
+        } else {
+            if let a = self.url?.absolute {
+                url = a
+            }
+        }
+        
+        var task = FIONetworkTask(method: .GET(params), url: url)
+        
+        // insert task into the taskManager
+        self.queueTask(task)
+        
+        return task
+    }
+    
+    private func post(params: [String: AnyObject]?, path: String?) -> FIONetworkTask {
+        
+        var url: String = ""
+        if let p = path {
+            url = self.url?.absoluteUrlWithPath(p) ?? p
+        } else {
+            if let a = self.url?.absolute {
+                url = a
+            }
+        }
+        
+        var task = FIONetworkTask(method: .POST(params), url: url)
+        
+        // insert task into the taskManager
+        self.queueTask(task)
+        
+        return task
+    }
+    
+    private func upload(uploadData data: NSData, path: String?, completionHandler: completionWithTuples?) {
+        
+    }
+    
+    private func download(completionHandler: completionWithTuples?) {
+        
+    }
 }
