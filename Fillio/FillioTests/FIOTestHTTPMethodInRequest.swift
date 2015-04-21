@@ -36,7 +36,7 @@ class FIOTestHTTPMethodInRequest: XCTestCase {
     
     func testPOSTRequest() {
         var myClient = FIONetwork.clientWithRootUrl("http://localhost:9999/")
-        let params = ["action":"test", "username":"Kevin", "id": 12.2]
+        let params = ["action":"test", "username":"Kevin"]
         
         var expectation = self.expectationWithDescription("Test POST Params")
         

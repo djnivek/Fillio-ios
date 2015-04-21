@@ -72,7 +72,7 @@ public class FIONetworkTask {
                 req.HTTPMethod = "GET"
                 if let dict = dictionary {
                     var urlMutable = self.url
-                    let string = RequestParams.RequestParamFromDictionary(dict)
+                    let string = RequestParams.toGET(dict)
                     urlMutable.appendUrl(string)
                     req.URL = NSURL(string: urlMutable)
                 }
@@ -80,17 +80,11 @@ public class FIONetworkTask {
                 req.HTTPMethod = "POST"
                 if let dict = dictionary {
                     var err: NSError?
-                    req.HTTPBody = NSJSONSerialization.dataWithJSONObject(dict, options: NSJSONWritingOptions.allZeros, error: &err)
-                    req.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                    req.addValue("application/json", forHTTPHeaderField: "Accept")
-                    //var boundary = "Boundary+\(arc4random())\(arc4random())"
-                    /*if parameters != nil {
-                        request.HTTPBody = dataFromParameters(parameters!,boundary: boundary)
-                    }*/
-                    /*if request.valueForHTTPHeaderField(contentTypeKey) == nil {
-                        request.setValue("multipart/form-data; boundary=\(boundary)",
-                            forHTTPHeaderField:contentTypeKey)
-                    }*/
+                    let params = RequestParams.toPOST(dict)
+                    if req.valueForHTTPHeaderField("Content-Type") == nil {
+                        req.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                    }
+                    req.HTTPBody = params.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
                 }
             case .PUT:
                 req.HTTPMethod = "PUT"
@@ -239,21 +233,48 @@ extension FIONetworkTask {
 // MARK: - RequestParams
 
 class RequestParams {
-    class func RequestParamFromDictionary(dictionary: [String: AnyObject]) -> String {
+    class func toString(dictionary: [String: AnyObject], prefix: String?) -> String {
         
-        var string: String = "?"
-        var flagCharToAdd = false
-        for key in dictionary.keys {
-            if flagCharToAdd {
-                string += "&"
-            }
-            flagCharToAdd = true
-            if let val: AnyObject = dictionary[key] {
-                string += "\(key)=\(val)"
-            }
-            
+        var components: [(String, String)] = []
+        for key in sorted(Array(dictionary.keys), <) {
+            let value: AnyObject! = dictionary[key]
+            components += self.queryComponents(key, value)
         }
         
-        return string
+        if let p = prefix {
+            return p+join("&", components.map{"\($0)=\($1)"} as [String])
+        }
+        
+        return join("&", components.map{"\($0)=\($1)"} as [String])
+    }
+    
+    class func toGET(dictionary: [String: AnyObject]) -> String {
+        return self.toString(dictionary, prefix: "?")
+    }
+    
+    class func toPOST(dictionary: [String: AnyObject]) -> String {
+        return self.toString(dictionary, prefix: nil)
+    }
+    
+    class func queryComponents(key: String, _ value: AnyObject) -> [(String, String)] {
+        var components: [(String, String)] = []
+        if let dictionary = value as? [String: AnyObject] {
+            for (nestedKey, value) in dictionary {
+                components += queryComponents("\(key)[\(nestedKey)]", value)
+            }
+        } else if let array = value as? [AnyObject] {
+            for value in array {
+                components += queryComponents("\(key)[]", value)
+            }
+        } else {
+            components.extend([(escape(key), escape("\(value)"))])
+        }
+        
+        return components
+    }
+    
+    class func escape(string: String) -> String {
+        let legalURLCharactersToBeEscaped: CFStringRef = ":&=;+!@#$()',*"
+        return CFURLCreateStringByAddingPercentEscapes(nil, string, nil, legalURLCharactersToBeEscaped, CFStringBuiltInEncodings.UTF8.rawValue) as String
     }
 }
