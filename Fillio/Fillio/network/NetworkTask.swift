@@ -145,9 +145,6 @@ extension FIONetworkTask {
 
 extension FIONetworkTask {
     
-    public typealias successHandlerParam = (FIONetworkBridgeResponse)
-    public typealias completeHandlerParam = (FIONetworkBridgeResponse?, NSError?)
-    
     /// The completion blocks of the task
     ///
     /// - Success: The completion block called when the task finished
@@ -156,7 +153,7 @@ extension FIONetworkTask {
     public struct CompletionBlock {
         
         /// The alias of the complete block
-        typealias completeBlock = (completeHandlerParam) -> ()
+        typealias completeBlock = (FIONetworkBridgeResponse?, NSError?) -> ()
         
         /// The list of the complete block
         private var completionBlocks = [completeBlock]()
@@ -174,7 +171,7 @@ extension FIONetworkTask {
         }
         
         /// The optional block called on success
-        var completionSuccessBlock: ((successHandlerParam) -> ())?
+        var completionSuccessBlock: ((FIONetworkBridgeResponse) -> ())?
         
         /// The optional block called on fail
         var completionFailBlock: ((NSError?) -> ())?
@@ -200,7 +197,7 @@ extension FIONetworkTask {
         
         :param: block A handler that the class can call
         */
-        public mutating func Complete(block: (completeHandlerParam)->()) {
+        public mutating func Complete(block: (FIONetworkBridgeResponse?, NSError?)->()) {
             self.completionBlock = block
         }
         
@@ -220,7 +217,7 @@ extension FIONetworkTask {
         
         :param: block A handler that the class can call
         */
-        public mutating func Success(block: (successHandlerParam)->()) {
+        public mutating func Success(block: (FIONetworkBridgeResponse)->()) {
             self.completionSuccessBlock = block
         }
         

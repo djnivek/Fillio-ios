@@ -9,11 +9,11 @@
 public class FIONetworkBridgeResponse {
     
     public var string: String?
-    public var resObject: FIONetworkResultObject?
+    public var object: FIONetworkResultObject?
     
     public init(string: String?, object: FIONetworkResultObject?) {
-        self.string = string
-        self.resObject = object
+        self.string = string ?? object?.description
+        self.object = object
     }
     
 }
