@@ -86,7 +86,7 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
         //  ************* needed ****************** call delegate
     }
     
-    func Task(task: FIONetworkTask, didReceiveResponse response: AnyObject) {
+    func Task(task: FIONetworkTask, didReceiveResponse response: FIONetworkBridgeResponse) {
         
         // call all block
         task.blocks.AllCompletionBlock(response, nil)

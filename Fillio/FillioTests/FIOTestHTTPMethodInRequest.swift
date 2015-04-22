@@ -36,14 +36,20 @@ class FIOTestHTTPMethodInRequest: XCTestCase {
     
     func testPOSTRequest() {
         var myClient = FIONetwork.clientWithRootUrl("http://localhost:9999/")
-        let params = ["action":"test", "username":"Kevin"]
+        let params = ["action":"test", "username":"Kevin", "id": 12.2]
         
         var expectation = self.expectationWithDescription("Test POST Params")
         
         var task = myClient["xctest/network"](HTTPMethod.POST(params)) {
             (let response, let error) in
+            if let obj = response  {
+                if let o = obj.string {
+                    let action = o
+                    println("test -> \(action)")
+                }
+            }
             println("The response is '\(response)'")
-            println("The response is '\(error)'")
+            println("The error is '\(error)'")
             expectation.fulfill()
         }
         

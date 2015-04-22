@@ -162,7 +162,7 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate {
         self.taskManager = FIONetworkTaskManager(client: self)
     }
     
-    public typealias completionWithTuples = ((AnyObject?, NSError?)-> Void)
+    public typealias completionWithTuples = ((FIONetworkBridgeResponse?, NSError?)-> Void)
     public typealias functionSetting = (HTTPMethod?, completionWithTuples?) -> FIONetworkTask
     
     public subscript (path: String) -> functionSetting {

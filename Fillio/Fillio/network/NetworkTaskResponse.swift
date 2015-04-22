@@ -32,7 +32,7 @@ public class FIONetworkTaskResponse {
         return error != nil
     }
     
-    var data: AnyObject {
+    var data: FIONetworkBridgeResponse {
         
         // detect type
         if let resp = _response {
@@ -62,28 +62,28 @@ private enum FIONetworkResponseBody {
     
     case HTML(NSData?)
     
-    var data: AnyObject {
+    var data: FIONetworkBridgeResponse {
         switch self {
         case .JSON(let data) :
             var serializeError: NSError?
             if let d = data {
                 if let json: AnyObject = NSJSONSerialization.JSONObjectWithData(d, options: NSJSONReadingOptions.AllowFragments, error: &serializeError) {
                     if let error = serializeError {
-                        return FIONetworkResultObject(data: ["error":error.description])
+                        return FIONetworkBridgeResponse(string: nil, object:FIONetworkResultObject(data: ["error":error.description]))
                     }
-                    return FIONetworkResultObject(data: json)
+                    return FIONetworkBridgeResponse(string: nil, object:FIONetworkResultObject(data: json))
                 }
             }
-            return FIONetworkResultObject(data: ["error":"Cannot parse JSON"])
+            return FIONetworkBridgeResponse(string: nil, object:FIONetworkResultObject(data: ["error":"Cannot parse JSON"]))
         case .XML(let data) :
-            return FIONetworkResultObject(data: ["error":"Cannot parse XML"])
+            return FIONetworkBridgeResponse(string: nil, object:FIONetworkResultObject(data: ["error":"Cannot parse XML"]))
         case .HTML(let data) :
             if let d = data {
                 if let string = NSString(data: d, encoding: NSUTF8StringEncoding) {
-                    return string
+                    return FIONetworkBridgeResponse(string: string as String, object:nil)
                 }
             }
-            return FIONetworkResultObject(data: ["error":"Cannot parse HTML"])
+            return FIONetworkBridgeResponse(string: nil, object:FIONetworkResultObject(data: ["error":"Cannot parse HTML"]))
         }
     }
     

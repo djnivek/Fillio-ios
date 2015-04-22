@@ -36,6 +36,7 @@
 		0EBE8DFC1AADB6FA00148C8B /* FIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EBE8DFB1AADB6FA00148C8B /* FIO.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0EBE8E021AADB6FA00148C8B /* Fillio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EBE8DF61AADB6FA00148C8B /* Fillio.framework */; };
 		0EBE8E091AADB6FA00148C8B /* FillioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE8E081AADB6FA00148C8B /* FillioTests.swift */; };
+		0EDBC6C91AE6BAD400561EA5 /* NetworkBridgeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDBC6C81AE6BAD400561EA5 /* NetworkBridgeResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		0EBE8E011AADB6FA00148C8B /* FillioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FillioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EBE8E071AADB6FA00148C8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EBE8E081AADB6FA00148C8B /* FillioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillioTests.swift; sourceTree = "<group>"; };
+		0EDBC6C81AE6BAD400561EA5 /* NetworkBridgeResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkBridgeResponse.swift; path = network/NetworkBridgeResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +226,7 @@
 				0E679A811AC339CC007A1E77 /* NetworkTask.swift */,
 				0E07FE791ACEED1E00F938F4 /* NetworkResultObject.swift */,
 				0E60E1811AD828160041B3D7 /* NetworkObjectAuto.swift */,
+				0EDBC6C81AE6BAD400561EA5 /* NetworkBridgeResponse.swift */,
 			);
 			name = network;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				0E072F5B1AC083C5005653B1 /* Network.swift in Sources */,
 				0E978ED41ACEB24700001673 /* FIOCronManager.swift in Sources */,
 				0E7D680B1AAE11C800BDB176 /* Sendable.swift in Sources */,
+				0EDBC6C91AE6BAD400561EA5 /* NetworkBridgeResponse.swift in Sources */,
 				0E978ED61ACEB25A00001673 /* FIOCronJob.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

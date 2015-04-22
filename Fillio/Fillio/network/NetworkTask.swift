@@ -10,7 +10,7 @@ import Foundation
 
 public protocol FIONetworkTaskDelegate {
     /// Tells the delegate that a response has received from the task (required)
-    func Task(task: FIONetworkTask, didReceiveResponse response: AnyObject)
+    func Task(task: FIONetworkTask, didReceiveResponse response: FIONetworkBridgeResponse)
     
     /// Tells the delegate that a error occurred (required)
     func Task(task: FIONetworkTask, didFailedWithError error: NSError)
@@ -145,8 +145,8 @@ extension FIONetworkTask {
 
 extension FIONetworkTask {
     
-    public typealias successHandlerParam = (AnyObject)
-    public typealias completeHandlerParam = (AnyObject?, NSError?)
+    public typealias successHandlerParam = (FIONetworkBridgeResponse)
+    public typealias completeHandlerParam = (FIONetworkBridgeResponse?, NSError?)
     
     /// The completion blocks of the task
     ///
@@ -188,7 +188,7 @@ extension FIONetworkTask {
         :param: data The optional data
         :param: error The optional error
         */
-        public mutating func AllCompletionBlock(response: AnyObject?,_ error: NSError?) {
+        public mutating func AllCompletionBlock(response: FIONetworkBridgeResponse?,_ error: NSError?) {
             for block in completionBlocks {
                 block(response, error)
             }
@@ -224,7 +224,7 @@ extension FIONetworkTask {
             self.completionSuccessBlock = block
         }
         
-        init(_ completionBlock:((AnyObject?, NSError?) -> ())?, _ completionSuccessBlock:((AnyObject?) -> ())?, _ completionFailBlock:((NSError?) -> ())?) {
+        init(_ completionBlock:((FIONetworkBridgeResponse?, NSError?) -> ())?, _ completionSuccessBlock:((AnyObject?) -> ())?, _ completionFailBlock:((NSError?) -> ())?) {
             
         }
     }
@@ -233,8 +233,8 @@ extension FIONetworkTask {
 // MARK: - RequestParams
 
 class RequestParams {
+    
     class func toString(dictionary: [String: AnyObject], prefix: String?) -> String {
-        
         var components: [(String, String)] = []
         for key in sorted(Array(dictionary.keys), <) {
             let value: AnyObject! = dictionary[key]
@@ -248,10 +248,16 @@ class RequestParams {
         return join("&", components.map{"\($0)=\($1)"} as [String])
     }
     
+    /// The class method that return params formated to get method
+    ///
+    /// Example : ?action=test&id=12
     class func toGET(dictionary: [String: AnyObject]) -> String {
         return self.toString(dictionary, prefix: "?")
     }
     
+    /// The class method that return params formated to post method
+    ///
+    /// Example : action=test&id=12
     class func toPOST(dictionary: [String: AnyObject]) -> String {
         return self.toString(dictionary, prefix: nil)
     }
