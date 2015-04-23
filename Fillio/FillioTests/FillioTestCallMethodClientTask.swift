@@ -39,24 +39,24 @@ class FillioTestCallMethodClientTask: XCTestCase {
         var expectation = self.expectationWithDescription("Request session")
         var task = client["http://www.google.fr"](nil, nil)
         task.blocks.Complete {
-            expectation.fulfill()
             println("Response ->\($0)")
             println("Error -> \($1)")
+            expectation.fulfill()
         }
         task.resume()
-        waitForExpectationsWithTimeout(5.0, handler: nil)
+        waitForExpectationsWithTimeout(8.0, handler: nil)
     }
     
     func testGetDataInsideHandler() {
         var client = FIONetwork.defaultClient
         var expectation = self.expectationWithDescription("Google Request")
         var task = client["http://www.google.fr"](nil) {
-            expectation.fulfill()
             println("Response ->\($0)")
             println("Error -> \($1)")
+            expectation.fulfill()
         }
         task.resume()
-        waitForExpectationsWithTimeout(5.0, handler: nil)
+        waitForExpectationsWithTimeout(8.0, handler: nil)
     }
     
     func testTaskAutoStart() {
@@ -68,7 +68,7 @@ class FillioTestCallMethodClientTask: XCTestCase {
             println("Response ->\($0)")
             println("Error -> \($1)")
         }
-        waitForExpectationsWithTimeout(5.0, handler: nil)
+        waitForExpectationsWithTimeout(9.0, handler: nil)
     }
 
 }

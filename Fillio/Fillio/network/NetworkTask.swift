@@ -16,36 +16,56 @@ public protocol FIONetworkTaskDelegate {
     func Task(task: FIONetworkTask, didFailedWithError error: NSError)
 }
 
+enum TaskType {
+    case Request
+    case Upload
+    case Download
+}
+
 public class FIONetworkTask {
     
     // MARK: - Properties
     
-    // MARK: Params
+    // MARK: - Accessible | public
     
-    /// The params given for task
-    //private var param: [String: AnyObject]?
+    /// The params given for task (read-only)
+    public var param: [String: AnyObject]? {
+        get {
+            return self._param
+        }
+    }
     
-    // MARK: Others
-    
-    /// The HTTP method of the task
-    var method: HTTPMethod = .GET(nil)
+    /// The blocks struct that tells callback on completion
+    public var blocks: CompletionBlock
     
     /// The url for the task
     public let url: String
     
+    // MARK: - Progression
+    
+    private var progress: ((percentage: Double, totalBytesPerformed: Int64, totalBytesToPerform: Int64)->())?
+    
+    // MARK: Params
+    
+    private var _param: [String: AnyObject]?
+    
+    // MARK: Others
+    
+    /// The type of the task
+    var taskType: TaskType = .Request
+    
+    /// The HTTP method of the task
+    var method: HTTPMethod = .GET(nil)
+    
     /// The session task associated to self
     var sessionTask: NSURLSessionTask?
-    
-    /// The blocks struct that tells callback on completion
-    public var blocks: CompletionBlock
     
     var delegate: FIONetworkTaskDelegate?
     
     // MARK: Computed properties
     
-    public var response: FIONetworkTaskResponse? {
+    var response: FIONetworkTaskResponse? {
         didSet {
-            
             if let theDelegate = self.delegate {
                 if let resp = response {
                     if resp.isFailed {
@@ -98,13 +118,11 @@ public class FIONetworkTask {
         return nil
     }
     
-    // MARK: Functions
-    
     /// The completion handler called when the load request is complete (session.dataTaskWithRequest).
     ///
     /// Should be set on a block usage rather than delegate.
     /// Both can be used
-    func completionHandler(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void {
+    func didRequestComplete(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void {
         if let d = data {
             if let r = response {
                 self.response = FIONetworkTaskResponse(response: r, data: d)
@@ -115,6 +133,8 @@ public class FIONetworkTask {
         }
     }
     
+    // MARK: - Initializers
+    
     init(method: HTTPMethod?, url: String) {
         if let m = method {
             self.method = m
@@ -122,22 +142,46 @@ public class FIONetworkTask {
         self.url = url
         self.blocks = CompletionBlock(nil, nil, nil)
     }
+    
+    init(type: TaskType, url: String) {
+        self.taskType = type
+        self.url = url
+        self.blocks = CompletionBlock(nil, nil, nil)
+    }
+    
+    /*init(downloadable: Downloa, url: String) {
+        self.url = url
+        self.taskType = .Download
+        self.blocks = CompletionBlock(nil, nil, nil)
+    }*/
 }
 
 // MARK: - State
 
 extension FIONetworkTask {
     
-    public var progress: NSProgress? {
-        return nil
+    // MARK: - Progression
+    
+    /// The method is called periodically during the lifecycle of the task
+    ///
+    /// Method only available for :
+    ///
+    /// - Download task
+    /// - Upload Task
+    public func progress(closure: ((percentage: Double, totalBytesPerformed: Int64, totalBytesToPerform: Int64)->())) {
+        self.progress = closure
     }
     
     // MARK: - Controlling the Task State
     
-    public func resume() {
+    /// Method that resume the task
+    ///
+    /// :param: self The instance of it container
+    public func resume() -> Self {
         if let task = sessionTask {
             task.resume()
         }
+        return self
     }
 }
 
@@ -279,5 +323,22 @@ class RequestParams {
     class func escape(string: String) -> String {
         let legalURLCharactersToBeEscaped: CFStringRef = ":&=;+!@#$()',*"
         return CFURLCreateStringByAddingPercentEscapes(nil, string, nil, legalURLCharactersToBeEscaped, CFStringBuiltInEncodings.UTF8.rawValue) as String
+    }
+}
+
+class FIONetworkTaskUpload: FIONetworkTask {
+    
+    /// The uploadable
+    ///
+    /// This item can be in different kind of format
+    ///
+    /// - File (NSURL)
+    /// - Data (NSData)
+    var uploadable: Uploadable
+    
+    /// The initializer of the task
+    init(uploadable: Uploadable, url: String) {
+        super.init(type: .Upload, url: url)
+        self.uploadable = uploadable
     }
 }

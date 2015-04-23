@@ -46,26 +46,47 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
     /// This method add the task within the session and start/idle it depending on the configuration
     ///
     /// :param: task The task to add within the session
-    func addTaskToQueue(task: FIONetworkTask) {
+    ///
+    /// :returns: `YES` if the task was added
+    func addTaskToQueue(task: FIONetworkTask) -> Bool {
         
         // set delegate
         task.delegate = self
         
         // Add task to session
         if let request = task.request {
-            let theTask: NSURLSessionTask = session.dataTaskWithRequest(request, completionHandler: task.completionHandler)
+            
+            let theTask: NSURLSessionTask?
+            
+            switch task.taskType {
+            case .Request:
+                let theTask: NSURLSessionTask = session.dataTaskWithRequest(request, completionHandler: task.didRequestComplete)
+            case .Upload:
+                let innerTask = task as! FIONetworkTaskUpload
+                switch innerTask.uploadable {
+                case .Data(let data):
+                    let theTask: NSURLSessionTask = session.uploadTaskWithRequest(request, fromData: data)
+                case .File(let fileURL):
+                    let theTask: NSURLSessionTask = session.uploadTaskWithRequest(request, fromFile: fileURL)
+                }
+            }
+            
             
             // add sessionTask to the task
-            task.sessionTask = theTask
-            
-            // insert task to stack
-            tasks.append(task)
-            
-            // start the task if required by the client
-            if ownClient.config.autostartTask {
-                theTask.resume()
+            if let t = theTask {
+                task.sessionTask = t
+                
+                // insert task to stack
+                tasks.append(task)
+                
+                // start the task if required by the client
+                if ownClient.config.autostartTask {
+                    t.resume()
+                }
+                return true
             }
         }
+        return false
     }
 
     // MARK: - NetworkTask Delegate -

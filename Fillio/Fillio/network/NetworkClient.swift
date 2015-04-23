@@ -35,6 +35,11 @@ extension String {
     }
 }
 
+public enum Uploadable {
+    case Data(NSData)
+    case File(NSURL)
+}
+
 /// This class manage client
 ///
 /// Each client can have
@@ -123,7 +128,7 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate {
         /// The empty initializer
         init() {}
         
-        func absoluteUrlWithPath(path: String) -> String {
+        func absoluteUrlWithPath(path: String?) -> String {
             // create task with elements
             var theFullUrl = ""
             if self.isValid {
@@ -137,12 +142,16 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate {
                             if rootPath != "/" {
                                 theFullUrl += "/"+rootPath
                             }
-                            theFullUrl.appendUrl(path)
+                            if let p = path {
+                                theFullUrl.appendUrl(p)
+                            }
                         }
                     }
                 }
             } else {
-                theFullUrl += path
+                if let p = path {
+                    theFullUrl += p
+                }
             }
             return theFullUrl
         }
@@ -172,23 +181,6 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate {
                 
                 // create task with elements
                 var theFullUrl = self.url?.absoluteUrlWithPath(path) ?? path
-                
-//                if let m = method {
-//                    switch m {
-//                    case .GET(let dict):
-//                        self.GET(dict, completionHandler: completion)
-//                    case .POST(let dict):
-//                        self.POST(dict, completionHandler: completion)
-//                    case .PUT:
-//                        fatalError("PUT not available")
-//                    case .DELETE:
-//                        fatalError("DELETE not available")
-//                    default:
-//                        self.GET(nil, completionHandler: completion)
-//                    }
-//                }
-                
-                
                 
                 var task = FIONetworkTask(method: method, url: theFullUrl)
                 
@@ -229,6 +221,25 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate {
 
 extension FIONetworkClient {
     
+    /// Return the url from the path
+    ///
+    /// :discuss:
+    ///
+    /// - If path and url is not nil, it return both appended
+    /// - If path is nil, it return the url
+    /// - If path and url are nil, it return an empty string
+    private func absoluteUrlForPath(path: String?) -> String {
+        var url: String = ""
+        if let abso = self.url?.absoluteUrlWithPath(path) {
+            url = abso
+        } else if let p = path {
+            url = p
+        } else {
+            url = ""
+        }
+        return url
+    }
+    
     public func downloadImage(url: String) -> UIImage {
         let url = NSURL(string: url)
         let data = NSData(contentsOfURL: url!)
@@ -236,16 +247,9 @@ extension FIONetworkClient {
         return image!
     }
     
-    private func get(params: [String: AnyObject]?, path: String?) -> FIONetworkTask {
+    public func get(params: [String: AnyObject]?, path: String?) -> FIONetworkTask {
         
-        var url: String = ""
-        if let p = path {
-            url = self.url?.absoluteUrlWithPath(p) ?? p
-        } else {
-            if let a = self.url?.absolute {
-                url = a
-            }
-        }
+        var url = self.absoluteUrlForPath(path)
         
         var task = FIONetworkTask(method: .GET(params), url: url)
         
@@ -255,16 +259,9 @@ extension FIONetworkClient {
         return task
     }
     
-    private func post(params: [String: AnyObject]?, path: String?) -> FIONetworkTask {
+    public func post(params: [String: AnyObject]?, path: String?) -> FIONetworkTask {
         
-        var url: String = ""
-        if let p = path {
-            url = self.url?.absoluteUrlWithPath(p) ?? p
-        } else {
-            if let a = self.url?.absolute {
-                url = a
-            }
-        }
+        var url = self.absoluteUrlForPath(path)
         
         var task = FIONetworkTask(method: .POST(params), url: url)
         
@@ -274,11 +271,15 @@ extension FIONetworkClient {
         return task
     }
     
-    private func upload(uploadData data: NSData, path: String?, completionHandler: completionWithTuples?) {
+    public func upload(upload uploadable: Uploadable, path: String?, completionHandler: completionWithTuples?) {
+        
+        var url = self.absoluteUrlForPath(path)
+        
+        var task =
         
     }
     
-    private func download(completionHandler: completionWithTuples?) {
+    public func download(completionHandler: completionWithTuples?) {
         
     }
 }
