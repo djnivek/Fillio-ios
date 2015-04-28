@@ -271,12 +271,15 @@ extension FIONetworkClient {
         return task
     }
     
-    public func upload(upload uploadable: Uploadable, path: String?, completionHandler: completionWithTuples?) {
+    public func upload(upload uploadable: Uploadable, path: String?, completionHandler: completionWithTuples?) -> FIONetworkTask {
         
         var url = self.absoluteUrlForPath(path)
         
-        var task =
+        var task = FIONetworkTaskUpload(uploadable: uploadable, url: url)
         
+        self.queueTask(task)
+        
+        return task
     }
     
     public func download(completionHandler: completionWithTuples?) {

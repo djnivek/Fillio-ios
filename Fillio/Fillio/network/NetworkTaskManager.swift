@@ -56,7 +56,7 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
         // Add task to session
         if let request = task.request {
             
-            let theTask: NSURLSessionTask?
+            var theTask: NSURLSessionTask?
             
             switch task.taskType {
             case .Request:
@@ -69,6 +69,8 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
                 case .File(let fileURL):
                     let theTask: NSURLSessionTask = session.uploadTaskWithRequest(request, fromFile: fileURL)
                 }
+            default:
+                theTask = nil
             }
             
             

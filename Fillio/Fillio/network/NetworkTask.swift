@@ -338,7 +338,7 @@ class FIONetworkTaskUpload: FIONetworkTask {
     
     /// The initializer of the task
     init(uploadable: Uploadable, url: String) {
-        super.init(type: .Upload, url: url)
         self.uploadable = uploadable
+        super.init(type: .Upload, url: url)
     }
 }
