@@ -24,10 +24,14 @@ protocol FIONetworkTaskManagerDelegate {
 
 // MARK: - TaskManager -
 
-class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloadDelegate, NSURLSessionTaskDelegate, FIONetworkTaskDelegate {
+class FIONetworkTaskManager: NSObject {
     
-    /// The client session, sharedSession by default
-    var session: NSURLSession = NSURLSession.sharedSession()
+    /// The client session provided to all tasks for this client
+    ///
+    /// By default, defaultSessionConfiguration is set
+    ///
+    /// The delegate is `self`
+    lazy var session: NSURLSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: self, delegateQueue: nil)
     
     /// The delegate
     //var delegate: FIONetworkTaskManagerDelegate?
@@ -40,7 +44,6 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
     
     init(client: FIONetworkClient) {
         self.ownClient = client
-        //self.delegate = delegate
     }
     
     /// This method add the task within the session and start/idle it depending on the configuration
@@ -62,8 +65,8 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
             case .Request:
                 let theTask: NSURLSessionTask = session.dataTaskWithRequest(request, completionHandler: task.didRequestComplete)
             case .Upload:
-                let innerTask = task as! FIONetworkTaskUpload
-                switch innerTask.uploadable {
+                let taskUpload = task as! FIONetworkTaskUpload
+                switch taskUpload.uploadable {
                 case .Data(let data):
                     let theTask: NSURLSessionTask = session.uploadTaskWithRequest(request, fromData: data)
                 case .File(let fileURL):
@@ -72,7 +75,6 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
             default:
                 theTask = nil
             }
-            
             
             // add sessionTask to the task
             if let t = theTask {
@@ -90,6 +92,11 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
         }
         return false
     }
+    
+    
+}
+
+extension FIONetworkTaskManager: FIONetworkTaskDelegate {
 
     // MARK: - NetworkTask Delegate -
     
@@ -107,6 +114,8 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
         //  ***************** no delegate yet ! *****************
         //  *                                                   *
         //  ************* needed ****************** call delegate
+        
+        
     }
     
     func Task(task: FIONetworkTask, didReceiveResponse response: FIONetworkBridgeResponse) {
@@ -117,18 +126,20 @@ class FIONetworkTaskManager: NSObject, NSURLSessionDelegate, NSURLSessionDownloa
             completionSuccess(response)
         }
         
-        // call delegate
+        //  call delegate **************** needed ***************
+        //  *                                                   *
+        //  ***************** no delegate yet ! *****************
+        //  ***************** no delegate yet ! *****************
+        //  *                                                   *
+        //  ************* needed ****************** call delegate
+        
+        
     }
-    
-    // MARK: - Session Delegate -
-    
-    func URLSession(session: NSURLSession, task: NSURLSessionTask, willPerformHTTPRedirection response: NSHTTPURLResponse, newRequest request: NSURLRequest, completionHandler: (NSURLRequest!) -> Void) {
-        println("willPerform")
-    }
-    
-    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
-        println("didFinishDownloading")
-    }
+}
+
+// MARK: - Session Task Upload Delegate -
+
+extension FIONetworkTaskManager: NSURLSessionTaskDelegate {//, NSURLSessionDownloadDelegate {
     
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
         println("didCompleteWithError")

@@ -160,6 +160,8 @@ public class FIONetworkClient: FIONetworkClientConfigurationDelegate {
     /// The optional client url
     public var url: URL?
     
+    // MARK: - Initializers
+    
     init() {
         config.delegate = self
         self.url = URL()
