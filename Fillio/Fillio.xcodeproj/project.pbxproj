@@ -26,7 +26,7 @@
 		0E679A801AC2EBE8007A1E77 /* NetworkClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E679A7F1AC2EBE8007A1E77 /* NetworkClientConfiguration.swift */; };
 		0E679A821AC339CC007A1E77 /* NetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E679A811AC339CC007A1E77 /* NetworkTask.swift */; };
 		0E7D68081AAE11B800BDB176 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D68071AAE11B800BDB176 /* User.swift */; };
-		0E7D680B1AAE11C800BDB176 /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D68091AAE11C800BDB176 /* Updatable.swift */; };
+		0E7D680B1AAE11C800BDB176 /* Transferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D68091AAE11C800BDB176 /* Transferable.swift */; };
 		0E7D680C1AAE11C800BDB176 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D680A1AAE11C800BDB176 /* Object.swift */; };
 		0E7D680F1AAE124300BDB176 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D680D1AAE124300BDB176 /* NetworkClient.swift */; };
 		0E7D68151AAE404900BDB176 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D68141AAE404900BDB176 /* Action.swift */; };
@@ -38,6 +38,8 @@
 		0EBE8DFC1AADB6FA00148C8B /* FIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EBE8DFB1AADB6FA00148C8B /* FIO.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0EBE8E021AADB6FA00148C8B /* Fillio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EBE8DF61AADB6FA00148C8B /* Fillio.framework */; };
 		0EBE8E091AADB6FA00148C8B /* FillioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBE8E081AADB6FA00148C8B /* FillioTests.swift */; };
+		0EC044541AF769B000EB490A /* ObjectTestTransferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC044531AF769B000EB490A /* ObjectTestTransferable.swift */; };
+		0EC044571AF769FA00EB490A /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC044561AF769FA00EB490A /* Customer.swift */; };
 		0EDBC6C91AE6BAD400561EA5 /* NetworkBridgeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDBC6C81AE6BAD400561EA5 /* NetworkBridgeResponse.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,7 +73,7 @@
 		0E679A7F1AC2EBE8007A1E77 /* NetworkClientConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkClientConfiguration.swift; path = network/NetworkClientConfiguration.swift; sourceTree = "<group>"; };
 		0E679A811AC339CC007A1E77 /* NetworkTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkTask.swift; path = network/NetworkTask.swift; sourceTree = "<group>"; };
 		0E7D68071AAE11B800BDB176 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = auth/User.swift; sourceTree = "<group>"; };
-		0E7D68091AAE11C800BDB176 /* Updatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Updatable.swift; path = api/Updatable.swift; sourceTree = "<group>"; };
+		0E7D68091AAE11C800BDB176 /* Transferable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Transferable.swift; path = api/Transferable.swift; sourceTree = "<group>"; };
 		0E7D680A1AAE11C800BDB176 /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Object.swift; path = api/Object.swift; sourceTree = "<group>"; };
 		0E7D680D1AAE124300BDB176 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkClient.swift; path = network/NetworkClient.swift; sourceTree = "<group>"; };
 		0E7D68141AAE404900BDB176 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Action.swift; path = api/Action.swift; sourceTree = "<group>"; };
@@ -86,6 +88,8 @@
 		0EBE8E011AADB6FA00148C8B /* FillioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FillioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EBE8E071AADB6FA00148C8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EBE8E081AADB6FA00148C8B /* FillioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillioTests.swift; sourceTree = "<group>"; };
+		0EC044531AF769B000EB490A /* ObjectTestTransferable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTestTransferable.swift; sourceTree = "<group>"; };
+		0EC044561AF769FA00EB490A /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		0EDBC6C81AE6BAD400561EA5 /* NetworkBridgeResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkBridgeResponse.swift; path = network/NetworkBridgeResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,15 +185,8 @@
 		0EBE8E051AADB6FA00148C8B /* FillioTests */ = {
 			isa = PBXGroup;
 			children = (
-				0E60E1881AD834FC0041B3D7 /* JSON */,
-				0E380B7C1ADAD27F00F87154 /* FIOTestHTTPMethodInRequest.swift */,
-				0EBE8E081AADB6FA00148C8B /* FillioTests.swift */,
-				0E65812E1AC977E5000C5FD3 /* FillioTestCallMethodClientTask.swift */,
-				0E6581321AC9A423000C5FD3 /* FIOTestGetDataCustomClient.swift */,
-				0E6581301AC97815000C5FD3 /* FillioTestSettingClient.swift */,
-				0E6581341ACB126A000C5FD3 /* FillioTestNetworkBlock.swift */,
-				0E37CACC1AE8F54200A612C7 /* FillioTestUpload.swift */,
-				0E4E0BFB1AF2357B0089D489 /* ILDYS.png */,
+				0EC044521AF7699600EB490A /* API */,
+				0EC044511AF7698800EB490A /* Network */,
 				0EBE8E061AADB6FA00148C8B /* Supporting Files */,
 			);
 			path = FillioTests;
@@ -214,7 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				0E7D68141AAE404900BDB176 /* Action.swift */,
-				0E7D68091AAE11C800BDB176 /* Updatable.swift */,
+				0E7D68091AAE11C800BDB176 /* Transferable.swift */,
 				0E7D680A1AAE11C800BDB176 /* Object.swift */,
 			);
 			name = api;
@@ -243,6 +240,39 @@
 				0E7D68071AAE11B800BDB176 /* User.swift */,
 			);
 			name = auth;
+			sourceTree = "<group>";
+		};
+		0EC044511AF7698800EB490A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0E60E1881AD834FC0041B3D7 /* JSON */,
+				0E380B7C1ADAD27F00F87154 /* FIOTestHTTPMethodInRequest.swift */,
+				0EBE8E081AADB6FA00148C8B /* FillioTests.swift */,
+				0E65812E1AC977E5000C5FD3 /* FillioTestCallMethodClientTask.swift */,
+				0E6581321AC9A423000C5FD3 /* FIOTestGetDataCustomClient.swift */,
+				0E6581301AC97815000C5FD3 /* FillioTestSettingClient.swift */,
+				0E6581341ACB126A000C5FD3 /* FillioTestNetworkBlock.swift */,
+				0E37CACC1AE8F54200A612C7 /* FillioTestUpload.swift */,
+				0E4E0BFB1AF2357B0089D489 /* ILDYS.png */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		0EC044521AF7699600EB490A /* API */ = {
+			isa = PBXGroup;
+			children = (
+				0EC044551AF769DD00EB490A /* object */,
+				0EC044531AF769B000EB490A /* ObjectTestTransferable.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		0EC044551AF769DD00EB490A /* object */ = {
+			isa = PBXGroup;
+			children = (
+				0EC044561AF769FA00EB490A /* Customer.swift */,
+			);
+			name = object;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,7 +398,7 @@
 				0E60E1821AD828160041B3D7 /* NetworkObjectAuto.swift in Sources */,
 				0E072F5B1AC083C5005653B1 /* Network.swift in Sources */,
 				0E978ED41ACEB24700001673 /* FIOCronManager.swift in Sources */,
-				0E7D680B1AAE11C800BDB176 /* Updatable.swift in Sources */,
+				0E7D680B1AAE11C800BDB176 /* Transferable.swift in Sources */,
 				0EDBC6C91AE6BAD400561EA5 /* NetworkBridgeResponse.swift in Sources */,
 				0E978ED61ACEB25A00001673 /* FIOCronJob.swift in Sources */,
 			);
@@ -381,11 +411,13 @@
 				0E6581351ACB126A000C5FD3 /* FillioTestNetworkBlock.swift in Sources */,
 				0E60E1861AD829920041B3D7 /* FIOTestObjectAutoComplete.swift in Sources */,
 				0E0401411AD59B7A0021E68F /* FIOTestsJSONParsing.swift in Sources */,
+				0EC044541AF769B000EB490A /* ObjectTestTransferable.swift in Sources */,
 				0E37CACD1AE8F54200A612C7 /* FillioTestUpload.swift in Sources */,
 				0E60E18A1AD9A1FA0041B3D7 /* Adresse.swift in Sources */,
 				0E380B7D1ADAD27F00F87154 /* FIOTestHTTPMethodInRequest.swift in Sources */,
 				0EBE8E091AADB6FA00148C8B /* FillioTests.swift in Sources */,
 				0E6581311AC97815000C5FD3 /* FillioTestSettingClient.swift in Sources */,
+				0EC044571AF769FA00EB490A /* Customer.swift in Sources */,
 				0E60E1841AD828E10041B3D7 /* Contact.swift in Sources */,
 				0E6581331AC9A423000C5FD3 /* FIOTestGetDataCustomClient.swift in Sources */,
 				0E65812F1AC977E5000C5FD3 /* FillioTestCallMethodClientTask.swift in Sources */,

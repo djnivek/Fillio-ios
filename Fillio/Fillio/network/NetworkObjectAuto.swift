@@ -69,8 +69,10 @@ extension FIONetworkObjectAuto {
             }
             
             // else return an error string
-            var descriptionReturn = "Error during `description` generation"
-            return descriptionReturn
+            
+            fatalError("Error during `description` generation")
+            /*var descriptionReturn = "Error during `description` generation"
+            return descriptionReturn*/
         }
     }
     

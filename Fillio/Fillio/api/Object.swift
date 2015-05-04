@@ -8,14 +8,56 @@
 
 import Foundation
 
-class FIOApiObject: Updatable {
+/// This class is provided to easily transfert data from iOS to Fillio Server.
+///
+/// You can :
+///
+/// - Save an object in your server
+/// - Load one from your server
+public class FIOApiObject {
     
-    var id: String?
-    var createdAt: NSDate?
+    /// The unique identifier for the object
+    private var _id: String?
     
-    /*override init() {
-        super.init()
-    }*/
+    /// The creation date
+    private var _createdAt: NSDate?
+    
+    /// This flag indicates you the object was gotten from the server
+    private var _flagObjectFromServer: Boolean?
+    
+    private var _innerProperties: [String: Any]? {
+        // loop that looks for properties
+        let allProps = reflect(self)
+        var innerProps = [String: Any]()
+        for var i = 0; i < allProps.count; i++ {
+            // put values into array of filtered values
+            if allProps[i].0 != "super" {
+                innerProps[allProps[i].0] = allProps[i].1.value
+            }
+            if let obj = self as? FIOApiTransferable {
+                if let toIgnore = obj.ignoreFields() {
+                    if !contains(toIgnore, allProps[i].0) {
+                        innerProps[allProps[i].0] = allProps[i].1.value
+                    }
+                }
+            }
+        }
+        return innerProps
+    }
+    
+    /// The name of the class into your Fillio Project
+    ///
+    /// Example : Model_User
+    private var _fillioModelName: String {
+        if let obj = self as? FIOApiTransferable {
+            return obj.modelName()
+        }
+        fatalError("Model name should be defined by Transferable Protocol")
+    }
+    
+    public init() {
+        
+    }
     
     func getAll() {
         
@@ -29,16 +71,52 @@ class FIOApiObject: Updatable {
     ///
     /// :param: id The id
     /// :param: conditions The id
-    /// :param: optionalFields The fields
-    private func _select(id: String?, optionalFields: [String]?) {
+    /// :param: optionalFields The fields that will be dislayed in the request
+    private func _select(id: String?) {
         if let theId = id {
             let cond: [String: String] = ["id" : theId]
-            self._select(cond, optionalFields: optionalFields)
+            self._select(cond)
         }
     }
     
-    private func _select(conditions: [String: String]?, optionalFields: [String]?) {
+    private func _select(conditions: [String: String]?) {
         
+    }
+}
+
+extension FIOApiObject {
+    
+    func fields() -> [String] {
+        var fields = [String]()
+        
+        // loop that looks for properties
+        let allProps = reflect(self)
+        var filteredProps = [String: Any]()
+        for var i = 0; i < allProps.count; i++ {
+            // put values into array of filtered values
+            if allProps[i].0 != "super" {
+                filteredProps[allProps[i].0] = allProps[i].1.value
+            }
+            if let obj = self as? FIOApiTransferable {
+                if let toIgnore = obj.ignoreFields() {
+                    if !contains(toIgnore, allProps[i].0) {
+                        filteredProps[allProps[i].0] = allProps[i].1.value
+                    }
+                }
+            }
+        }
+        
+        return fields
+    }
+    
+    func __toSendFormat() -> NSDictionary {
+        var dict: NSMutableDictionary = [_id!: "_id", _createdAt!.description: "_createdAt"]
+        if let keys = self._innerProperties?.keys {
+            for key in keys {
+                dic//t["test"] = "fdjk"
+            }
+        }
+        return dict
     }
     
     private func _save() {
@@ -46,13 +124,4 @@ class FIOApiObject: Updatable {
         //action["test"] = "coucou"
         action.run()
     }
-    
-    override func __toSendFormat() -> NSDictionary {
-        let dict = [id!: "_id", createdAt!.description: "_createdAt"]
-        return dict
-    }
-}
-
-extension FIOApiObject {
-    
 }
