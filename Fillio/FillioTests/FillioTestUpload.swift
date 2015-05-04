@@ -40,10 +40,21 @@ class FillioTestUpload: XCTestCase {
         var expectation = self.expectationWithDescription("Test Block")
         var client = FIONetwork.clientWithRootUrl("http://localhost:9999/")
         
-        client.get(params, path: "xctest/network").resume().blocks.Success {
-            (let response) -> () in
-            println(response.string)
-            XCTAssertNotNil(response.string, "La réponse est nulle")
+        let dataString = "Lorem ipsum dolor sit amet".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        let data = Uploadable.Data(dataString!)
+        client.upload(upload: data, path: "upload/") { (let response, let error) -> Void in
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(10.0, handler: nil)
+    }
+    
+    func testUploadImage() {
+        var expectation = self.expectationWithDescription("Test Block")
+        var client = FIONetwork.clientWithRootUrl("http://localhost:9999/")
+        
+        let url = NSURL(fileURLWithPath: "ILDYS.png")
+        let img = Uploadable.File(url!)
+        client.upload(upload: img, path: "upload/file") { (let response, let error) -> Void in
             expectation.fulfill()
         }
         waitForExpectationsWithTimeout(10.0, handler: nil)
