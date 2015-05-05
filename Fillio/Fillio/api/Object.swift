@@ -16,14 +16,20 @@ import Foundation
 /// - Load one from your server
 public class FIOApiObject {
     
-    /// The unique identifier for the object
+    /// The identifier provided by fillio
     private var _id: String?
+    
+    /// The unique identifier created during the first initialization
+    private var _uniqueID: String?
     
     /// The creation date
     private var _createdAt: NSDate?
     
+    /// The update date
+    private var _updatedAt: NSDate?
+    
     /// This flag indicates you the object was gotten from the server
-    private var _flagObjectFromServer: Boolean?
+    private var _flagObjectFromServer: Bool?
     
     private var _innerProperties: [String: Any]? {
         // loop that looks for properties
@@ -56,7 +62,21 @@ public class FIOApiObject {
     }
     
     public init() {
-        
+        _flagObjectFromServer = false
+        _createdAt = NSDate()
+        _uniqueID = uniqueIdentifier()
+    }
+    
+    private func uniqueIdentifier() -> String {
+        fatalError("uniqueIdentifier : function does not exist for now, create it")
+    }
+    
+    public init(fromServer: Bool) {
+        _flagObjectFromServer = fromServer
+    }
+    
+    convenience init(json: [String: AnyObject], fromServer: Bool) {
+        self.init(fromServer: fromServer)
     }
     
     func getAll() {
@@ -86,6 +106,14 @@ public class FIOApiObject {
 
 extension FIOApiObject {
     
+    public func save() {
+        self._save()
+    }
+    
+}
+
+extension FIOApiObject {
+    
     func fields() -> [String] {
         var fields = [String]()
         
@@ -109,19 +137,41 @@ extension FIOApiObject {
         return fields
     }
     
-    func __toSendFormat() -> NSDictionary {
-        var dict: NSMutableDictionary = [_id!: "_id", _createdAt!.description: "_createdAt"]
-        if let keys = self._innerProperties?.keys {
+    /// This method return params for the server (readonly)
+    ///
+    /// The ignore params are excluded to this list
+    ///
+    /// :returns: Properties formated into String
+    func _intoParams() -> [String: String] {
+        
+        var dict = [String: String]()
+        
+        if let id = _id {
+            dict["_id"] = id
+        }
+        if let uId = _uniqueID {
+            dict["_uniqueID"] = uId
+        }
+        if let createdAt = _createdAt {
+            dict["_createdAt"] = createdAt.description
+        }
+        if let keys = _innerProperties?.keys {
             for key in keys {
-                dic//t["test"] = "fdjk"
+                if let propertyStringVal = _innerProperties![key] as? String {
+                    dict[key] = propertyStringVal
+                }
             }
         }
         return dict
     }
     
     private func _save() {
+        
+        let params = _intoParams()
+        
+        /*
         var action = FIOApiAction(module: "api", controller: "dataobject", action: "set", library: "fillio")
         //action["test"] = "coucou"
-        action.run()
+        action.run()*/
     }
 }
