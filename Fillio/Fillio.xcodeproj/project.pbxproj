@@ -41,6 +41,7 @@
 		0EC044541AF769B000EB490A /* ObjectTestTransferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC044531AF769B000EB490A /* ObjectTestTransferable.swift */; };
 		0EC044571AF769FA00EB490A /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC044561AF769FA00EB490A /* Customer.swift */; };
 		0EDBC6C91AE6BAD400561EA5 /* NetworkBridgeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDBC6C81AE6BAD400561EA5 /* NetworkBridgeResponse.swift */; };
+		0EF3BBCF1AF8AD4000E829DC /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF3BBCE1AF8AD4000E829DC /* Query.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		0EC044531AF769B000EB490A /* ObjectTestTransferable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTestTransferable.swift; sourceTree = "<group>"; };
 		0EC044561AF769FA00EB490A /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		0EDBC6C81AE6BAD400561EA5 /* NetworkBridgeResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkBridgeResponse.swift; path = network/NetworkBridgeResponse.swift; sourceTree = "<group>"; };
+		0EF3BBCE1AF8AD4000E829DC /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Query.swift; path = api/Query.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 				0E7D68141AAE404900BDB176 /* Action.swift */,
 				0E7D68091AAE11C800BDB176 /* Transferable.swift */,
 				0E7D680A1AAE11C800BDB176 /* Object.swift */,
+				0EF3BBCE1AF8AD4000E829DC /* Query.swift */,
 			);
 			name = api;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				0E7D68151AAE404900BDB176 /* Action.swift in Sources */,
 				0E7D680C1AAE11C800BDB176 /* Object.swift in Sources */,
 				0EAED9281AC2958B0090ECB7 /* NetworkTaskManager.swift in Sources */,
+				0EF3BBCF1AF8AD4000E829DC /* Query.swift in Sources */,
 				0E7D680F1AAE124300BDB176 /* NetworkClient.swift in Sources */,
 				0E679A821AC339CC007A1E77 /* NetworkTask.swift in Sources */,
 				0E1716D31ABC73F500AF0E40 /* NetworkTaskResponse.swift in Sources */,
